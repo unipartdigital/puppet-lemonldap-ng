@@ -12,7 +12,6 @@ class lemonldap::server::operatingsystem::redhat(
       /^[Rr]edis$/: {
         $packagesessions = [ "redis" ]
       }
-
       default: {
         $packagesessions = false
       }

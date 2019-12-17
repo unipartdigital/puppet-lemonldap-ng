@@ -21,7 +21,7 @@ class lemonldap::server::webserver::apache(
   }
   $vhosts.each | $vhost | {
     file { $vhost:
-        source => template("puppet:///modules/${module_name}${vhost}.erb"),
+        source => template("puppet:///modules/${module_name}/templates${vhost}.erb"),
         owner  => 'root',
         group  => 'root',
         mode   => '0644',

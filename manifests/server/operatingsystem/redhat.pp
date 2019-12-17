@@ -35,7 +35,7 @@ class lemonldap::server::operatingsystem::redhat(
     }
 
     if $sessionstore {
-      notify { 'Session store DB config goes here' }
+      notify { 'Session store DB config goes here': }
     }
 
     if $packagewebserver {

@@ -15,10 +15,10 @@ class lemonldap::server::webserver::apache(
 
   #replace all of this with apache::vhost {}
 
-  lemonldap::server::webserver::portalsoap {
-    "apache":
-      do_soap => $do_soap,
-  }
+  #lemonldap::server::webserver::portalsoap {
+  #  "apache":
+  #    do_soap => $do_soap,
+  #}
   $vhosts.each | $vhost | {
     file { $vhost:
         source => template("${module_name}${vhost}.erb"),

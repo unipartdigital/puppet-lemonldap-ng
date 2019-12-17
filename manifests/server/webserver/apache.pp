@@ -7,15 +7,11 @@ class lemonldap::server::webserver::apache(
     default  => "apache2"
   }
 
-  service { $srvname:
-    enable => true,
-    ensure => running,
-  }
+  #replace all of this with apache::vhost {}
 
   lemonldap::server::webserver::portalsoap {
     "apache":
       do_soap => $do_soap,
-      notify    => Service[$srvname];
   }
   file {
     '/etc/httpd/conf.d/z-lemonldap-ng-handler.conf':

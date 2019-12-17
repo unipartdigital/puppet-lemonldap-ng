@@ -12,7 +12,7 @@ class lemonldap::repo (
       }
     }
     default: {
-      notify { 'Not Yet Written :-)' }
+      notify { 'Not Yet Written :-)': }
     }
   }
 }

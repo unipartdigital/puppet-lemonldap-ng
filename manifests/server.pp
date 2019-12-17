@@ -44,69 +44,60 @@ class lemonldap::server (
   String $ssl_key_path  = undef,
   String $webserver     = "apache") {
     include lemonldap::vars
+    include lemonldap::repo
 
     # Execute OS specific actions
     case $::osfamily {
-	"Debian": {
-	    class {
-		lemonldap::server::operatingsystem::debian:
-		    sessionstore => $sessionstore,
-		    webserver    => $webserver;
-	    }
-	}
-	"RedHat": {
-	    class {
-		lemonldap::server::operatingsystem::redhat:
-		    sessionstore => $sessionstore,
-		    webserver    => $webserver;
-	    }
-	}
-	default: {
-	    fail("Module ${module_name} is not supported on ${::operatingsystem}")
-	}
+      "Debian": {
+        class {
+          lemonldap::server::operatingsystem::debian:
+            sessionstore => $sessionstore,
+            webserver    => $webserver;
+        }
+      }
+      "RedHat": {
+        class {
+          lemonldap::server::operatingsystem::redhat:
+            sessionstore => $sessionstore,
+            webserver    => $webserver;
+        }
+      }
+      default: {
+        fail("Module ${module_name} is not supported on ${::operatingsystem}")
+      }
     }
 
     # LemonLDAP packages
     package {
-	[ "lemonldap-ng", "lemonldap-ng-fr-doc" ]:
-	    ensure => installed,
+      [ "lemonldap-ng", "lemonldap-ng-fr-doc" ]:
+        ensure => installed,
     }
 
     case $webserver {
-	"apache", "httpd": {
-	    class {
-		lemonldap::server::webserver::apache:
-		    do_soap => $do_soap,
-		    domain  => $domain;
-	    }
-	}
-	"nginx": {
-	    class {
-		lemonldap::server::webserver::nginx:
-		    do_soap => $do_soap,
-		    domain  => $domain;
-	    }
-	}
-	default: {
-	    fail("Module ${module_name} needs apache or nginx webserver")
-	}
+      "apache", "httpd": {
+        class {
+          lemonldap::server::webserver::apache:
+            do_soap => $do_soap,
+            domain  => $domain;
+        }
+      }
+      "nginx": {
+        class {
+          lemonldap::server::webserver::nginx:
+            do_soap => $do_soap,
+            domain  => $domain;
+        }
+      }
+      default: {
+        fail("Module ${module_name} needs apache or nginx webserver")
+      }
     }
 
     # Set vhost in /etc/hosts
     each($lemonldap::vars::webserver_prefixes) |$prefix| {
-	host {
-	    "$prefix.$domain":
-		ip => $::ipaddress;
-	}
+      host {
+        "$prefix.$domain":
+          ip => $::ipaddress;
+      }
     }
-
-    # Set default domain
-    #    exec {
-    #	"Set LLNG Default Domain":
-    #	    command => "sed -i 's/example\.com/$domain/g' conf/lmConf-1.js test/index.pl",
-    #	    cwd     => "/var/lib/lemonldap-ng",
-    #	    onlyif  => "grep example.com conf/lmConf-1.js test/index.pl",
-    #	    path    => "/usr/bin:/bin",
-    #	    require => Package["lemonldap-ng"],
-    #    }
-}
+  }

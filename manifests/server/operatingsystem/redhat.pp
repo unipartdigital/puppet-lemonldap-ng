@@ -34,56 +34,14 @@ class lemonldap::server::operatingsystem::redhat(
       }
     }
 
-    file {
-      "Install LLNG Enterprise Linux Repository":
-        group  => "root",
-        mode   => "0644",
-        notify => Exec["Refresh Packages Cache"],
-        owner  => "root",
-        path   => "/etc/yum.repos.d/lemonldap-ng.repo",
-        source => "puppet:///modules/lemonldap/redhat_lemonldap-ng.repo";
-      "Install LLNG Repository Key":
-        group  => "root",
-        mode   => "0644",
-        owner  => "root",
-        path   => "/etc/pki/rpm-gpg/RPM-GPG-KEY-OW2",
-        source => "puppet:///modules/lemonldap/rpm-gpg-key-ow2";
+    if $sessionstore {
+      notify { 'Session store DB config goes here' }
     }
 
-    package {
-      "epel-release":
-        ensure => present;
-    }
-
-    exec {
-      "Import LLNG RPM Key":
-        command     => "rpm --import RPM-GPG-KEY-OW2",
-        cwd         => "/etc/pki/rpm-gpg",
-        path        => "/usr/sbin:/usr/bin:/sbin:/bin",
-        require     => File["Install LLNG Repository Key"],
-        unless      => "rpm -q gpg-pubkey --qf '%{VERSION}\n' | grep -i $gpg_pubkey_id";
-      "Refresh Packages Cache":
-        command     => "yum clean all && yum makecache",
-        path        => "/usr/sbin:/usr/bin:/sbin:/bin",
-        refreshonly => true,
-        require     => [
-          Exec["Import LLNG RPM Key"],
-          Package["epel-release"]
-        ];
-    }
-
-    if ($sessionstore != false) {
-      package {
-        $sessionstore:
-          ensure  => present,
-          require => Exec["Refresh Packages Cache"];
-      }
-    }
-    if ($packagewebserver != false) {
+    if $packagewebserver {
       package {
         $packageswebserver:
           ensure  => present,
-          require => Exec["Refresh Packages Cache"];
       }
     }
   }

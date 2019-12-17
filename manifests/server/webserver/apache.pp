@@ -15,21 +15,21 @@ class lemonldap::server::webserver::apache(
   }
   file {
     '/etc/httpd/conf.d/z-lemonldap-ng-handler.conf':
-      source => template("puppet:///modules/${module_name}${name}.erb"),
+      source => template("puppet:///modules/${module_name}${title}.erb"),
       owner  => 'root',
       group  => 'root',
       mode   => '0644',
   }
   file {
     '/etc/httpd/conf.d/z-lemonldap-ng-portal.conf':
-      source => template("puppet:///modules/${module_name}${name}.erb"),
+      source => template("puppet:///modules/${module_name}${title}.erb"),
       owner  => 'root',
       group  => 'root',
       mode   => '0644',
   }
   file {
     '/etc/httpd/conf.d/z-lemonldap-ng-manager.conf':
-      source => template("puppet:///modules/${module_name}${name}.erb"),
+      source => template("puppet:///modules/${module_name}${title}.erb"),
       owner  => 'root',
       group  => 'root',
       mode   => '0644',

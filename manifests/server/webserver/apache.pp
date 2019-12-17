@@ -7,7 +7,10 @@ class lemonldap::server::webserver::apache(
     default  => "apache2"
   }
 
-  lemonldap::server::webserver::service { $srvname: }
+  service { $srvname:
+    enable => true,
+    ensure => running,
+  }
 
   lemonldap::server::webserver::portalsoap {
     "apache":

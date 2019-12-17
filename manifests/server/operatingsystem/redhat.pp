@@ -19,15 +19,9 @@ class lemonldap::server::operatingsystem::redhat(
     case $webserver {
       "nginx": {
         $packageswebserver = [ "nginx", "lemonldap-ng-fastcgi-server", "perl-LWP-Protocol-https" ]
-
-        Package["nginx"]
-        -> Service["nginx"]
       }
       "apache", "httpd": {
         $packageswebserver = [ "httpd", "mod_perl", "mod_fcgid", "perl-LWP-Protocol-https" ]
-
-        Package["httpd"]
-        -> Service["httpd"]
       }
       default: {
         fail("Invalid webserver '$webserver', please use nginx, apache or httpd")

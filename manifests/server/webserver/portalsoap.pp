@@ -24,13 +24,11 @@ define lemonldap::server::webserver::portalsoap(
 		cwd     => "/etc/lemonldap-ng",
 		onlyif  => "grep '${match22} from all' portal-${webserver}*.conf",
 		path    => "/usr/bin:/bin",
-		require =>  Exec["Set LLNG Default Domain"];
 	    "Set LLNG SOAP Portal Configuration (Apache >=2.3)" :
 		command => "sed -i 's/Require all ${match23}.*/Require all ${set23}/g' portal-${webserver}*.conf",
 		cwd     => "/etc/lemonldap-ng",
 		onlyif  => "grep 'Require all ${match23}' portal-${webserver}*.conf",
 		path    => "/usr/bin:/bin",
-		require =>  Exec["Set LLNG Default Domain"];
 	}
     } else {
 	$setngx = $do_soap ? {
@@ -47,7 +45,6 @@ define lemonldap::server::webserver::portalsoap(
 		cwd     => "/etc/lemonldap-ng",
 		onlyif  => "grep '${matchngx} all' portal-${webserver}*.conf",
 		path    => "/usr/bin:/bin",
-		require =>  Exec["Set LLNG Default Domain"];
 	}
     }
 }

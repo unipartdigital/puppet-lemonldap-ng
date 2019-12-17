@@ -21,10 +21,10 @@ class lemonldap::server::webserver::apache(
   #}
   $vhosts.each | $vhost | {
     file { $vhost:
-        source => template("${module_name}${vhost}.erb"),
-        owner  => 'root',
-        group  => 'root',
-        mode   => '0644',
+        content => template("${module_name}${vhost}.erb"),
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0644',
     }
   }
 }

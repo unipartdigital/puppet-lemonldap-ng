@@ -15,23 +15,23 @@ class lemonldap::server::webserver::apache(
   }
   file {
     '/etc/httpd/conf.d/z-lemonldap-ng-handler.conf':
-      template => "${::module_name}${title}",
-      owner    => 'root',
-      group    => 'root',
-      mode     => '0644',
+      source => template("${::module_name}${title}.erb"),
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644',
   }
   file {
     '/etc/httpd/conf.d/z-lemonldap-ng-portal.conf':
-      template => "${::module_name}${title}",
-      owner    => 'root',
-      group    => 'root',
-      mode     => '0644',
+      source => template("${::module_name}${title}.erb"),
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644',
   }
   file {
     '/etc/httpd/conf.d/z-lemonldap-ng-manager.conf':
-      template => "${::module_name}${title}",
-      owner    => 'root',
-      group    => 'root',
-      mode     => '0644',
+      source => template("${::module_name}${title}.erb"),
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644',
   }
 }

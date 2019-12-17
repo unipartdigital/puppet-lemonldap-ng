@@ -19,11 +19,12 @@ class lemonldap::server::webserver::apache(
     "apache":
       do_soap => $do_soap,
   }
-  file {
-    $vhosts:
-      source => template("puppet:///modules/${module_name}${name}.erb"),
-      owner  => 'root',
-      group  => 'root',
-      mode   => '0644',
+  $vhosts.each | $vhost | {
+    file { $vhost:
+        source => template("puppet:///modules/${module_name}${vhost}.erb"),
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0644',
+    }
   }
 }

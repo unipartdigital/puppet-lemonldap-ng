@@ -101,12 +101,12 @@ class lemonldap::server (
     }
 
     # Set default domain
-    exec {
-	"Set LLNG Default Domain":
-	    command => "sed -i 's/example\.com/$domain/g' conf/lmConf-1.js test/index.pl",
-	    cwd     => "/var/lib/lemonldap-ng",
-	    onlyif  => "grep example.com conf/lmConf-1.js test/index.pl",
-	    path    => "/usr/bin:/bin",
-	    require => Package["lemonldap-ng"],
-    }
+    #    exec {
+    #	"Set LLNG Default Domain":
+    #	    command => "sed -i 's/example\.com/$domain/g' conf/lmConf-1.js test/index.pl",
+    #	    cwd     => "/var/lib/lemonldap-ng",
+    #	    onlyif  => "grep example.com conf/lmConf-1.js test/index.pl",
+    #	    path    => "/usr/bin:/bin",
+    #	    require => Package["lemonldap-ng"],
+    #    }
 }

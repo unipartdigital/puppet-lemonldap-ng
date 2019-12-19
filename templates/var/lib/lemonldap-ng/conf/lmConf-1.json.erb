@@ -8,7 +8,7 @@
                "display" : "auto",
                "logo" : "demo.png",
                "name" : "Application Test 1",
-               "uri" : "http://test1.<%= @domain %>/"
+               "uri" : "https://test1.<%= @domain %>/"
             },
             "type" : "application"
          },
@@ -18,7 +18,7 @@
                "display" : "auto",
                "logo" : "thumbnail.png",
                "name" : "Application Test 2",
-               "uri" : "http://test2.<%= @domain %>/"
+               "uri" : "https://test2.<%= @domain %>/"
             },
             "type" : "application"
          },
@@ -32,7 +32,7 @@
                "display" : "auto",
                "logo" : "configure.png",
                "name" : "WebSSO Manager",
-               "uri" : "http://manager.<%= @domain %>/manager.html"
+               "uri" : "https://manager.<%= @domain %>/manager.html"
             },
             "type" : "application"
          },
@@ -42,7 +42,7 @@
                "display" : "auto",
                "logo" : "database.png",
                "name" : "Notifications explorer",
-               "uri" : "http://manager.<%= @domain %>/notifications.html"
+               "uri" : "https://manager.<%= @domain %>/notifications.html"
             },
             "type" : "application"
          },
@@ -52,7 +52,7 @@
                "display" : "auto",
                "logo" : "database.png",
                "name" : "Sessions explorer",
-               "uri" : "http://manager.<%= @domain %>/sessions.html"
+               "uri" : "https://manager.<%= @domain %>/sessions.html"
             },
             "type" : "application"
          },
@@ -66,7 +66,7 @@
                "display" : "on",
                "logo" : "help.png",
                "name" : "Local documentation",
-               "uri" : "http://manager.<%= @domain %>/doc/"
+               "uri" : "https://manager.<%= @domain %>/doc/"
             },
             "type" : "application"
          },
@@ -76,7 +76,7 @@
                "display" : "on",
                "logo" : "network.png",
                "name" : "Official Website",
-               "uri" : "http://lemonldap-ng.org/"
+               "uri" : "https://lemonldap-ng.org/"
             },
             "type" : "application"
          },
@@ -144,7 +144,7 @@
       "UA" : "$ENV{HTTP_USER_AGENT}",
       "_whatToTrace" : "$_auth eq 'SAML' ? lc($_user.'@'.$_idpConfKey) : $_auth eq 'OpenIDConnect' ? lc($_user.'@'.$_oidcConnectedRP) : lc($_user)"
    },
-   "mailUrl" : "http://auth.<%= @domain %>/resetpwd",
+   "mailUrl" : "https://auth.<%= @domain %>/resetpwd",
    "notification" : 1,
    "notificationStorage" : "File",
    "notificationStorageOptions" : {
@@ -156,13 +156,13 @@
       "Directory" : "/var/lib/lemonldap-ng/psessions",
       "LockDirectory" : "/var/lib/lemonldap-ng/psessions/lock"
    },
-   "portal" : "http://auth.<%= @domain %>/",
+   "portal" : "https://auth.<%= @domain %>/",
    "portalSkin" : "bootstrap",
    "portalSkinBackground" : "1280px-Cedar_Breaks_National_Monument_partially.jpg",
    "registerDB" : "Demo",
-   "registerUrl" : "http://auth.<%= @domain %>/register",
+   "registerUrl" : "https://auth.<%= @domain %>/register",
    "reloadUrls" : {
-      "localhost" : "http://reload.<%= @domain %>/reload"
+      "localhost" : "https://reload.<%= @domain %>/reload"
    },
    "securedCookie" : 0,
    "sessionDataToRemember" : {},

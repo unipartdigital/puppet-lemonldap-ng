@@ -24,8 +24,17 @@ ErrorDocument 500 http://auth.<%= @domain %>/lmerror/500
 ErrorDocument 502 http://auth.<%= @domain %>/lmerror/502
 ErrorDocument 503 http://auth.<%= @domain %>/lmerror/503
 
-<VirtualHost "*:80">
+<VirtualHost "*:443">
     ServerName reload.<%= @domain %>
+    ## SSL directives
+    SSLEngine on
+    SSLCertificateFile      "<%= @ssl_cert_path %>"
+    SSLCertificateKeyFile   "<%= @ssl_cert_path %>"
+    SSLCertificateChainFile "<%= @ssl_cert_path %>"
+    SSLProtocol             TLSv1.2
+    SSLCipherSuite          ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:RSA+AESGCM256:!aNULL:!MD5:!DSS
+    SSLHonorCipherOrder     On
+    SSLUseStapling On
 
     # Configuration reload mechanism (only 1 per physical server is
     # needed): choose your URL to avoid restarting Apache when

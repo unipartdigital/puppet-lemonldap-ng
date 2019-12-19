@@ -9,8 +9,19 @@
 #LogFormat "%v:%p %h %l %{Lm-Remote-User}o %t \"%r\" %>s %O %{Lm-Remote-Custom}o" llng
 
 # Manager virtual host (manager.<%= @domain %>)
-<VirtualHost "*:80">
+<VirtualHost "*:443">
     ServerName manager.<%= @domain %>
+
+  ## SSL directives
+    SSLEngine on
+    SSLCertificateFile      "<%= @ssl_cert_path %>"
+    SSLCertificateKeyFile   "<%= @ssl_cert_path %>"
+    SSLCertificateChainFile "<%= @ssl_cert_path %>"
+    SSLProtocol             TLSv1.2
+    SSLCipherSuite          ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:RSA+AESGCM256:!aNULL:!MD5:!DSS
+    SSLHonorCipherOrder     On
+    SSLUseStapling On
+
     LogLevel notice
     # See above to set LLNG user id in Apache logs
     #CustomLog /var/log/httpd/manager.log llng

@@ -1,11 +1,18 @@
+# TODO: Replace all this with Apache vhost definitions rather
+# that this hardcoded stuff
+
 class lemonldap::server::webserver::apache(
-  Boolean $do_soap = false,
-  String $domain   = undef
+  Boolean $do_soap      = false,
+  String $domain        = undef,
+  String $ssl_ca_path   = undef,
+  String $ssl_cert_path = undef,
+  String $ssl_key_path  = undef,
 ){
   $vhosts = [ 
     '/etc/httpd/conf.d/z-lemonldap-ng-handler.conf', 
     '/etc/httpd/conf.d/z-lemonldap-ng-portal.conf', 
     '/etc/httpd/conf.d/z-lemonldap-ng-manager.conf'
+    '/etc/httpd/conf.d/z-lemonldap-ng-http.conf'
   ]
 
   $srvname       = $::osfamily ? {

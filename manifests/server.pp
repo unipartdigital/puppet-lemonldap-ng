@@ -85,25 +85,12 @@ class lemonldap::server (
       mode    => '0644',
     }
 
-
-    case $webserver {
-      "apache", "httpd": {
-        class {
-          lemonldap::server::webserver::apache:
-            do_soap => $do_soap,
-            domain  => $domain;
-        }
-      }
-      "nginx": {
-        class {
-          lemonldap::server::webserver::nginx:
-            do_soap => $do_soap,
-            domain  => $domain;
-        }
-      }
-      default: {
-        fail("Module ${module_name} needs apache or nginx webserver")
-      }
+    class { lemonldap::server::webserver::apache:
+      do_soap       => $do_soap,
+      domain        => $domain,
+      ssl_ca_path   => $ssl_ca_path,
+      ssl_cert_path => $ssl_cert_path,
+      ssl_key_path  => $ssl_key_path,
     }
 
     # Set vhost in /etc/hosts

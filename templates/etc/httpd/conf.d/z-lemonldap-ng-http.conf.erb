@@ -1,0 +1,29 @@
+# Puppet Managed. Do not modify!
+
+<VirtualHost *:80>
+  ServerName <%= @fqdn %>
+
+  ## Vhost docroot
+  DocumentRoot "/var/www/html"
+
+  ## Directories, there should at least be a declaration for /var/www/html
+
+  <Directory "/var/www/html">
+    Options FollowSymLinks MultiViews
+    AllowOverride None
+    Require all granted
+  </Directory>
+
+  ## Logging
+  ErrorLog "/var/log/httpd/<%= @fqdn %>-http_error.log"
+  ServerSignature Off
+  CustomLog "/var/log/httpd/<%= @fqdn %>-http_access.log" combined 
+
+  # Rewrite needed for multiple domains
+  RewriteCond "%{HTTP_HOST}" "!^reload|manager|auth|reset|test1\." [NC]
+  RewriteRule "^(?!/\.well-known/).*"  "https://%{HTTP_HOST}/$1" [L,R,NE]
+
+  ## Server aliases
+  ServerAlias reload.<%= @domain %> manager.<%= @domain %> auth.<%= @domain %> reset.<%= @domain %> test1.<%= @domain %>
+</VirtualHost>
+

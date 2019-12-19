@@ -25,9 +25,9 @@ languages    = en, fr, vi, it, ar, de, fi
 ;SMTPServer = localhost
 ;SMTPAuthUser = toto
 ;SMTPAuthPass = secret
-;mailFrom = password-reset@unipart.io
-;mailReplyTo = noreply@unipart.io
-;mailUrl = http://reset.mb1.unipart.io
+;mailFrom = password-reset@<%= @maildomain %>
+;mailReplyTo = noreply@<%= @maildomain %>
+;mailUrl = http://reset.<%= @domain %>
 ;mailConfirmSubject = <%= @company %> Password reset confirmation
 
 

@@ -49,6 +49,7 @@ class lemonldap::server (
   String $webserver     = "apache") {
     include lemonldap::params
     include lemonldap::repo
+    include lemonldap::branding
 
     # Execute OS specific actions
     case $::osfamily {

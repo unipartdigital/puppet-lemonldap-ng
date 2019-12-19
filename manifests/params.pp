@@ -1,4 +1,4 @@
-# == Class: lemonldap::vars
+# == Class: lemonldap::params
 #
 # === Parameters
 #
@@ -9,7 +9,7 @@
 # Clément Oudot <clement.oudot@savoirfairelinux.com>
 #
 
-class lemonldap::vars {
+class lemonldap::params {
     $gpg_pubkey_id      = "81F18E7A"
     $webserver_conf     = [ "handler", "manager", "portal", "test" ]
     $webserver_prefixes = [ "reload", "manager", "auth", "test1" ]

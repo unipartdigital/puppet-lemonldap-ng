@@ -44,7 +44,7 @@ class lemonldap::server (
   String $ssl_key_path  = undef,
   String $lemonldap_ini = '/etc/lemonldap-ng/lemonldap-ng.ini',
   String $webserver     = "apache") {
-    include lemonldap::vars
+    include lemonldap::params
     include lemonldap::repo
 
     # Execute OS specific actions
@@ -103,7 +103,7 @@ class lemonldap::server (
     }
 
     # Set vhost in /etc/hosts
-    each($lemonldap::vars::webserver_prefixes) |$prefix| {
+    each($lemonldap::params::webserver_prefixes) |$prefix| {
       host {
         "$prefix.$domain":
           ip => $::ipaddress;

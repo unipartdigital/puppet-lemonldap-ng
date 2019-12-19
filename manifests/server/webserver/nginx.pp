@@ -4,7 +4,7 @@ class lemonldap::server::webserver::nginx(
 ){
 
   lemonldap::server::webserver::setdomain {
-    $lemonldap::vars::webserver_conf:
+    $lemonldap::params::webserver_conf:
       domain    => $domain,
       webserver => "nginx";
   }

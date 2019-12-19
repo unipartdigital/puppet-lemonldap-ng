@@ -1,7 +1,7 @@
 class lemonldap::server::operatingsystem::debian(
   String $sessionstore = "File",
   String $webserver    = "apache") {
-    $gpg_pubkey_id     = $lemonldap::vars::gpg_pubkey_id
+    $gpg_pubkey_id     = $lemonldap::params::gpg_pubkey_id
     case $sessionstore {
 	/^[Mm]y[Ss][Qq][Ll]$/: {
 	    $packagesessions = [ "mysql-client" ]

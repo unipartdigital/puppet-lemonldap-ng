@@ -32,12 +32,15 @@
 # === Authors
 #
 # Clément Oudot <clement.oudot@savoirfairelinux.com>
+# Seth Tunstall <seth.tunstall@unipart.io>
 #
 
 class lemonldap::server (
   Boolean $do_soap      = false,
   Boolean $do_ssl       = false,
   String $domain        = undef,
+  String $maildomain    = undef,
+  String $company       = 'LemonLDAP::NG',
   String $sessionstore  = "File",
   String $ssl_ca_path   = undef,
   String $ssl_cert_path = undef,
@@ -76,8 +79,8 @@ class lemonldap::server (
 
     file { $lemonldap_ini:
       content => template("${module_name}${lemonldap_ini}.erb"),
-      owner   => 'root',
-      group   => 'root',
+      owner   => 'apache',
+      group   => 'apache',
       mode    => '0644',
     }
 

@@ -1,0 +1,48 @@
+; Puppet Managed. Do not modify!
+
+[all]
+logLevel     = warn
+
+[configuration]
+type=File
+dirName = /var/lib/lemonldap-ng/conf
+
+localStorage=Cache::FileCache
+localStorageOptions={                             \
+    'namespace'          => 'lemonldap-ng-config',\
+    'default_expires_in' => 600,                  \
+    'directory_umask'    => '007',                \
+    'cache_root'         => '/tmp',               \
+    'cache_depth'        => 3,                    \
+}
+
+[portal]
+staticPrefix = /static
+templateDir  = /usr/share/lemonldap-ng/portal/templates
+languages    = en, fr, vi, it, ar, de, fi
+;ldapPpolicyControl = 1
+;ldapSetPassword    = 1
+;SMTPServer = localhost
+;SMTPAuthUser = toto
+;SMTPAuthPass = secret
+;mailFrom = password-reset@unipart.io
+;mailReplyTo = noreply@unipart.io
+;mailUrl = http://reset.mb1.unipart.io
+;mailConfirmSubject = <%= @company %> Password reset confirmation
+
+
+
+
+
+[handler]
+https = 0
+port = 443
+status = 0
+
+[manager]
+protection   = manager
+staticPrefix = /static
+templateDir  = /usr/share/lemonldap-ng/manager/htdocs/templates
+languages    = fr, en, it, vi, ar
+enabledModules = conf, sessions, notifications, 2ndFA
+

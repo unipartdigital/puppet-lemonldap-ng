@@ -42,6 +42,7 @@ class lemonldap::server (
   String $ssl_ca_path   = undef,
   String $ssl_cert_path = undef,
   String $ssl_key_path  = undef,
+  String $lemonldap_ini = '/etc/lemonldap-ng/lemonldap-ng.ini',
   String $webserver     = "apache") {
     include lemonldap::vars
     include lemonldap::repo
@@ -72,6 +73,14 @@ class lemonldap::server (
       [ "lemonldap-ng", "lemonldap-ng-fr-doc" ]:
         ensure => installed,
     }
+
+    file { $lemonldap_ini:
+      content => template("${module_name}${lemonldap_ini}.erb"),
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+    }
+
 
     case $webserver {
       "apache", "httpd": {

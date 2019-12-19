@@ -11,8 +11,8 @@ class lemonldap::server::webserver::apache(
   $vhosts = [ 
     '/etc/httpd/conf.d/z-lemonldap-ng-handler.conf', 
     '/etc/httpd/conf.d/z-lemonldap-ng-portal.conf', 
-    '/etc/httpd/conf.d/z-lemonldap-ng-manager.conf'
-    '/etc/httpd/conf.d/z-lemonldap-ng-http.conf'
+    '/etc/httpd/conf.d/z-lemonldap-ng-manager.conf',
+    '/etc/httpd/conf.d/z-lemonldap-ng-http.conf',
   ]
 
   $srvname       = $::osfamily ? {

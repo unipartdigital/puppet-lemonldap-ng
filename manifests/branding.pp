@@ -14,7 +14,7 @@ class lemonldap::branding (
   $llng_dir = $::lemonldap::params::llng_dir
   include ::lemonldap::params
 
-  $company_logo =  "${llng_dir}/${logo_dir}/${logo}.png"
+  $company_logo =  "${llng_dir}/${logo_dir}/${logo}"
 
 
   file { $company_logo:

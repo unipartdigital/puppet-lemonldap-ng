@@ -11,10 +11,12 @@ class lemonldap::branding (
   $logo     = 'company_logo.png',
   $logo_url = 'https://cdn.example.com/company_logo.png',
 ){
-
+  $llng_dir = $::lemonldap::params::llng_dir
   include ::lemonldap::params
 
   $company_logo =  "${llng_dir}/${logo_dir}/${logo}.png"
+
+
   file { $company_logo:
     ensure => file,
     owner  => 'apache',

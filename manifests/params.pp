@@ -11,8 +11,9 @@
 #
 
 class lemonldap::params {
-    $gpg_pubkey_id      = "81F18E7A"
-    $webserver_conf     = [ "handler", "manager", "portal", "test" ]
-    $webserver_prefixes = [ "reload", "manager", "auth", "test1" ]
+    $gpg_pubkey_id      = '81F18E7A'
+    $webserver_conf     = [ 'handler', 'manager', 'portal', 'test' ]
+    $webserver_prefixes = [ 'reload', 'manager', 'auth', 'test1' ]
     $llng_dir           = '/usr/share/lemonldap-ng'
+    $company            = 'LemonLDAP::NG',
 }

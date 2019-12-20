@@ -40,64 +40,64 @@ class lemonldap::server (
   Boolean $do_ssl       = false,
   String $domain        = undef,
   String $maildomain    = undef,
-  String $company       = 'LemonLDAP::NG',
-  String $sessionstore  = "File",
+  String $sessionstore  = 'File',
   String $ssl_ca_path   = undef,
   String $ssl_cert_path = undef,
   String $ssl_key_path  = undef,
   String $lemonldap_ini = '/etc/lemonldap-ng/lemonldap-ng.ini',
-  String $webserver     = "apache") {
-    include lemonldap::params
-    include lemonldap::repo
-    include lemonldap::config
+  String $webserver     = 'apache',
+){
+  String $company       = $::lemonldap::params::company
 
-    # Execute OS specific actions
-    case $::osfamily {
-      "Debian": {
-        class {
-          lemonldap::server::operatingsystem::debian:
-            sessionstore => $sessionstore,
-            webserver    => $webserver;
-        }
-      }
-      "RedHat": {
-        class {
-          lemonldap::server::operatingsystem::redhat:
-            sessionstore => $sessionstore,
-            webserver    => $webserver;
-        }
-      }
-      default: {
-        fail("Module ${module_name} is not supported on ${::operatingsystem}")
+  include lemonldap::params
+  include lemonldap::repo
+  include lemonldap::config
+
+  # Execute OS specific actions
+  case $::osfamily {
+    'Debian': {
+      class { 'lemonldap::server::operatingsystem::debian':
+        sessionstore => $sessionstore,
+        webserver    => $webserver;
       }
     }
-
-    # LemonLDAP packages
-    package {
-      [ "lemonldap-ng", "lemonldap-ng-fr-doc" ]:
-        ensure => installed,
-    }
-
-    file { $lemonldap_ini:
-      content => template("${module_name}${lemonldap_ini}.erb"),
-      owner   => 'apache',
-      group   => 'apache',
-      mode    => '0644',
-    }
-
-    class { lemonldap::server::webserver::apache:
-      do_soap       => $do_soap,
-      domain        => $domain,
-      ssl_ca_path   => $ssl_ca_path,
-      ssl_cert_path => $ssl_cert_path,
-      ssl_key_path  => $ssl_key_path,
-    }
-
-    # Set vhost in /etc/hosts
-    each($lemonldap::params::webserver_prefixes) |$prefix| {
-      host {
-        "$prefix.$domain":
-          ip => $::ipaddress;
+    'RedHat': {
+      class { 'lemonldap::server::operatingsystem::redhat':
+        sessionstore => $sessionstore,
+        webserver    => $webserver;
       }
+    }
+    default: {
+      fail("Module ${module_name} is not supported on ${::operatingsystem}")
     }
   }
+
+  # LemonLDAP packages
+  package {
+    [ 'lemonldap-ng', 'lemonldap-ng-fr-doc' ]:
+      ensure => installed,
+  }
+
+  file { $lemonldap_ini:
+    content => template("${module_name}${lemonldap_ini}.erb"),
+    owner   => 'apache',
+    group   => 'apache',
+    mode    => '0644',
+  }
+
+  class { 'lemonldap::server::webserver::apache':
+    do_soap       => $do_soap,
+    domain        => $domain,
+    ssl_ca_path   => $ssl_ca_path,
+    ssl_cert_path => $ssl_cert_path,
+    ssl_key_path  => $ssl_key_path,
+  }
+
+  # Set vhost in /etc/hosts
+  each($lemonldap::params::webserver_prefixes) |$prefix| {
+    host {
+      "${prefix}.${domain}":
+        ip => $::ipaddress;
+    }
+  }
+}

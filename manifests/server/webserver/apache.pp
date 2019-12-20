@@ -13,6 +13,7 @@ class lemonldap::server::webserver::apache(
     '/etc/httpd/conf.d/z-lemonldap-ng-portal.conf', 
     '/etc/httpd/conf.d/z-lemonldap-ng-manager.conf',
     '/etc/httpd/conf.d/z-lemonldap-ng-http.conf',
+    '/etc/httpd/conf.d/ssl-puppet.conf',
   ]
 
   $srvname       = $::osfamily ? {

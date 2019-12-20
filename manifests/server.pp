@@ -47,7 +47,7 @@ class lemonldap::server (
   String $lemonldap_ini = '/etc/lemonldap-ng/lemonldap-ng.ini',
   String $webserver     = 'apache',
 ){
-  String $company       = $::lemonldap::params::company
+  $company              = $::lemonldap::params::company
 
   include lemonldap::params
   include lemonldap::repo

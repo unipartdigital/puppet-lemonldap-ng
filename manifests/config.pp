@@ -7,8 +7,8 @@
 
 # Set these in Hiera, don't change them here
 class lemonldap::config (
-  $logo_dir   = 'portal/htdocs/static/common/logos',
-  $logo       = 'company_logo.png',
+  $logo_dir   = 'portal/htdocs/static',
+  $logo       = 'common/logos/company_logo.png',
   $logo_url   = 'https://cdn.example.com/company_logo.png',
   $config_dir = '/var/lib/lemonldap-ng/conf',
 ){

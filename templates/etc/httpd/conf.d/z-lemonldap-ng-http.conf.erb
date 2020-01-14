@@ -20,8 +20,9 @@
   CustomLog "/var/log/httpd/<%= @fqdn %>-http_access.log" combined 
 
   # Rewrite needed for multiple domains
-  RewriteCond "%{HTTP_HOST}" "!^reload|manager|auth|reset|test1\." [NC]
-  RewriteRule "^(?!/\.well-known/).*"  "https://%{HTTP_HOST}/$1" [L,R,NE]
+  RewriteEngine On
+  RewriteCond "%{HTTPS}" !=on
+  RewriteRule "^(?!\/\.well-known\/|\/lmerror\/).*"  "https://%{HTTP_HOST}/$1" [L,R,NE]
 
   ## Server aliases
   ServerAlias reload.<%= @domain %> manager.<%= @domain %> auth.<%= @domain %> reset.<%= @domain %> test1.<%= @domain %>

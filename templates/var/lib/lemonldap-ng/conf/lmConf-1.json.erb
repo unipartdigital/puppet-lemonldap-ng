@@ -18,7 +18,6 @@
    },
    "infoFormMethod" : "get",
    "mailCharset" : "utf-8",
-   "passwordDB" : "Demo",
    "macros" : {
       "_whatToTrace" : "$_auth eq 'SAML' ? lc($_user.'@'.$_idpConfKey) : $_auth eq 'OpenIDConnect' ? lc($_user.'@'.$_oidcConnectedRP) : lc($_user)",
       "UA" : "$ENV{HTTP_USER_AGENT}"
@@ -43,7 +42,6 @@
    "u2fUserCanRemoveKey" : 1,
    "portalDisplayLogout" : 1,
    "mailSessionKey" : "mail",
-   "registerDB" : "Demo",
    "useRedirectOnError" : 1,
    "casAccessControlPolicy" : "none",
    "ldapGroupDecodeSearchedValue" : 0,
@@ -68,8 +66,8 @@
    "reloadTimeout" : 5,
    "persistentStorage" : "Apache::Session::File",
    "authChoiceModules" : {
-      "Demo" : "Demo;Demo;Demo;;;{}",
-      "Unipart" : "LDAP;LDAP;LDAP;;;{}"
+      "Unipart" : "LDAP;LDAP;LDAP;;;{}",
+      "Corporate LDAP" : "LDAP;LDAP;LDAP;;;{}"
    },
    "ldapGroupObjectClass" : "ipausergroup",
    "ldapGroupAttributeNameUser" : "dn",
@@ -166,7 +164,7 @@
    "impersonationMergeSSOgroups" : 0,
    "cfgNum" : 3,
    "sessionDataToRemember" : {},
-   "portalDisplayChangePassword" : "$_auth =~ /^(LDAP|DBI|Demo)$/",
+   "portalDisplayChangePassword" : "$_auth =~ /^(LDAP|DBI)$/",
    "portalUserAttr" : "_user",
    "samlIDPMetaDataOptions" : null,
    "ldapPwdEnc" : "utf-8",

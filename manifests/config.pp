@@ -7,20 +7,21 @@
 
 # Set these in Hiera, don't change them here
 class lemonldap::config (
-  $logo_dir        = 'portal/htdocs/static',
-  $logo            = 'common/logos/company_logo.png',
-  $logo_url        = 'https://cdn.example.com/company_logo.png',
-  $config_dir      = '/var/lib/lemonldap-ng/conf',
-  $ldap_base       = 'cn=users,cn=accounts,dc=example,dc=com',
-  $ldap_group_base = 'cn=groups,cn=accounts,dc=example,dc=com',
-  $ldap_server     = 'ldap.example.com',
-  $authldapfilter  = '(&(uid=$user)(objectClass=inetOrgPerson))',
-  $managerDn       = 'uid=manager,cn=users,cn=accounts,dc=example,dc=com',
-  $managerPassword = undef,
+  $logo_dir         = 'portal/htdocs/static',
+  $logo             = 'common/logos/company_logo.png',
+  $logo_url         = 'https://cdn.example.com/company_logo.png',
+  $config_dir       = '/var/lib/lemonldap-ng/conf',
+  $authldapfilter   = '(&(uid=$user)(objectClass=inetOrgPerson))',
+  $manager_dn       = 'uid=manager,cn=users,cn=accounts,dc=example,dc=com',
+  $manager_password = undef,
+  $ldap_server      = 'ldap://ldap.example.com',
+  $ldap_base_dn     = 'cn=users,cn=accounts,dc=example,dc=com',
+  $ldap_group_base  = 'cn=groups,cn=accounts,dc=example,dc=com',
+  $ldap_user        = 'uid=admin,cn=users,cn=accounts,dc=example,dc=com',
+  $ldap_password    = undef,
+  $company          = 'LemonLDAP::NG',
+  $llng_dir         = '/usr/share/lemonldap-ng'
 ){
-
-  $llng_dir        = $::lemonldap::params::llng_dir
-  $company         = $::lemonldap::params::company
 
   $llng_config     = 'lmConf-1.json' # TODO: replace this with something that 
   # finds the newest file in the directory so that puppet can manage edited

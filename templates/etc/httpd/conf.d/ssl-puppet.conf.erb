@@ -1,4 +1,6 @@
 <IfModule mod_ssl.c>
+  Listen 443 https
+  
   SSLRandomSeed startup builtin
   SSLRandomSeed startup file:/dev/urandom 512
   SSLRandomSeed connect builtin

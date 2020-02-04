@@ -20,18 +20,20 @@ class lemonldap::config (
   $ldap_user        = 'uid=admin,cn=users,cn=accounts,dc=example,dc=com',
   $ldap_password    = undef,
   $company          = 'LemonLDAP::NG',
-  $llng_dir         = '/usr/share/lemonldap-ng'
+  $llng_dir         = '/usr/share/lemonldap-ng',
+  $lemon_ldap_key   = undef,
+  $saml_enc_key     = undef,
+  $saml_sig_key     = undef,
+  $saml_enc_key_pub = undef,
+  $saml_sig_key_pub = undef
 ){
 
-  $llng_config     = 'lmConf-1.json' # TODO: replace this with something that 
-  # finds the newest file in the directory so that puppet can manage edited
-  # config. Also probably need to construct this from fragments so that we
-  # can declare the config nicely in Hiera (or collected resources...)
-
-  include ::lemonldap::params
-
+  $timestamp = Timestamp().strftime('%s')
+  $config_num = $facts['lemonldap_current_config'] + 1
+  $llng_config = "lmConf-${config_num}.json"
   $company_logo =  "${llng_dir}/${logo_dir}/${logo}"
 
+  include ::lemonldap::params
 
   file { $company_logo:
     ensure => file,
@@ -46,6 +48,6 @@ class lemonldap::config (
     owner   => 'apache',
     group   => 'apache',
     mode    => '0644',
-    content => template("${module_name}${config_dir}/${llng_config}.erb"),
+    content => template("${module_name}${config_dir}/lmConf.json.erb"),
   }
 }

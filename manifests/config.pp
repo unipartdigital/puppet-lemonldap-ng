@@ -49,5 +49,6 @@ class lemonldap::config (
     group   => 'apache',
     mode    => '0644',
     content => template("${module_name}${config_dir}/lmConf.json.erb"),
+    notify  => Service['httpd']
   }
 }

@@ -1,6 +1,7 @@
 class lemonldap::server::operatingsystem::redhat(
   String $sessionstore = 'File',
-  String $webserver    = 'apache') {
+  String $webserver    = 'apache',
+) {
     $gpg_pubkey_id     = $lemonldap::params::gpg_pubkey_id
     case $sessionstore {
       /^[Mm]y[Ss][Qq][Ll]$/: {

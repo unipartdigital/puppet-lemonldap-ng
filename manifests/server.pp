@@ -36,16 +36,17 @@
 #
 
 class lemonldap::server (
-  Boolean $do_soap      = false,
-  Boolean $do_ssl       = false,
-  String $domain        = undef,
-  String $maildomain    = undef,
-  String $sessionstore  = 'File',
-  String $ssl_ca_path   = undef,
-  String $ssl_cert_path = undef,
-  String $ssl_key_path  = undef,
-  String $lemonldap_ini = '/etc/lemonldap-ng/lemonldap-ng.ini',
-  String $webserver     = 'apache',
+  Boolean $webserver_manage = true,
+  Boolean $do_soap          = false,
+  Boolean $do_ssl           = false,
+  String $domain            = undef,
+  String $maildomain        = undef,
+  String $sessionstore      = 'File',
+  String $ssl_ca_path       = undef,
+  String $ssl_cert_path     = undef,
+  String $ssl_key_path      = undef,
+  String $lemonldap_ini     = '/etc/lemonldap-ng/lemonldap-ng.ini',
+  String $webserver         = 'apache'
 ){
   $company              = $::lemonldap::params::company
 
@@ -58,13 +59,13 @@ class lemonldap::server (
     'Debian': {
       class { 'lemonldap::server::operatingsystem::debian':
         sessionstore => $sessionstore,
-        webserver    => $webserver;
+        webserver    => $webserver,
       }
     }
     'RedHat': {
       class { 'lemonldap::server::operatingsystem::redhat':
         sessionstore => $sessionstore,
-        webserver    => $webserver;
+        webserver    => $webserver,
       }
     }
     default: {
@@ -86,11 +87,12 @@ class lemonldap::server (
   }
 
   class { 'lemonldap::server::webserver::apache':
-    do_soap       => $do_soap,
-    domain        => $domain,
-    ssl_ca_path   => $ssl_ca_path,
-    ssl_cert_path => $ssl_cert_path,
-    ssl_key_path  => $ssl_key_path,
+    do_soap          => $do_soap,
+    domain           => $domain,
+    ssl_ca_path      => $ssl_ca_path,
+    ssl_cert_path    => $ssl_cert_path,
+    ssl_key_path     => $ssl_key_path,
+    webserver_manage => $webserver_manage
   }
 
   # Set vhost in /etc/hosts

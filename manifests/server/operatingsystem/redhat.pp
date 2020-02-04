@@ -1,30 +1,30 @@
 class lemonldap::server::operatingsystem::redhat(
-  String $sessionstore = "File",
-  String $webserver    = "apache") {
+  String $sessionstore = 'File',
+  String $webserver    = 'apache') {
     $gpg_pubkey_id     = $lemonldap::params::gpg_pubkey_id
     case $sessionstore {
       /^[Mm]y[Ss][Qq][Ll]$/: {
-        $packagesessions = [ "mariadb-libs" ]
+        $packagesessions = [ 'mariadb-libs' ]
       }
       /^[Pp]ostgre([Ss][Qq][Ll]|s)$/: {
-        $packagesessions = [ "postgresql-libs" ]
+        $packagesessions = [ 'postgresql-libs' ]
       }
       /^[Rr]edis$/: {
-        $packagesessions = [ "redis" ]
+        $packagesessions = [ 'redis' ]
       }
       default: {
         $packagesessions = false
       }
     }
     case $webserver {
-      "nginx": {
-        $packageswebserver = [ "nginx", "lemonldap-ng-fastcgi-server", "perl-LWP-Protocol-https" ]
+      'nginx': {
+        $packageswebserver = [ 'nginx', 'lemonldap-ng-fastcgi-server', 'perl-LWP-Protocol-https', 'lasso', 'perl-Glib', 'perl-XML-Simple' ]
       }
-      "apache", "httpd": {
-        $packageswebserver = [ "httpd", "mod_perl", "mod_fcgid", "perl-LWP-Protocol-https" ]
+      'apache', 'httpd': {
+        $packageswebserver = [ 'httpd', 'mod_perl', 'mod_fcgid', 'perl-LWP-Protocol-https', 'lasso', 'perl-Glib', 'perl-XML-Simple' ]
       }
       default: {
-        fail("Invalid webserver '$webserver', please use nginx, apache or httpd")
+        fail("Invalid webserver '${webserver}', please use nginx, apache or httpd")
       }
     }
 

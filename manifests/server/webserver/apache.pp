@@ -8,20 +8,18 @@ class lemonldap::server::webserver::apache(
   String $ssl_cert_path = undef,
   String $ssl_key_path  = undef,
 ){
-  $vhosts = [ 
-    '/etc/httpd/conf.d/z-lemonldap-ng-handler.conf', 
-    '/etc/httpd/conf.d/z-lemonldap-ng-portal.conf', 
+  $vhosts = [
+    '/etc/httpd/conf.d/z-lemonldap-ng-handler.conf',
+    '/etc/httpd/conf.d/z-lemonldap-ng-portal.conf',
     '/etc/httpd/conf.d/z-lemonldap-ng-manager.conf',
     '/etc/httpd/conf.d/z-lemonldap-ng-http.conf',
     '/etc/httpd/conf.d/ssl-puppet.conf',
   ]
 
-  $srvname       = $::osfamily ? {
-    "RedHat" => "httpd",
-    default  => "apache2"
+  $srvname = $::osfamily ? {
+    'RedHat' => 'httpd',
+    default  => 'apache2'
   }
-
-  #replace all of this with apache::vhost {}
 
   #lemonldap::server::webserver::portalsoap {
   #  "apache":

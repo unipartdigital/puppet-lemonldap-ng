@@ -10,6 +10,13 @@ class lemonldap::repo (
         gpgcheck => '1',
         gpgkey   => 'https://lemonldap-ng.org/_media/rpm-gpg-key-ow2',
       }
+      yumrepo { 'lemonldap-ng-extras':
+        descr    => 'LemonLDAP::NG extras',
+        baseurl  => 'https://lemonldap-ng.org/redhat/extras/$releasever/',
+        enabled  => '1',
+        gpgcheck => '1',
+        gpgkey   => 'https://lemonldap-ng.org/_media/rpm-gpg-key-ow2',
+      }
     }
     default: {
       notify { 'Not Yet Written :-)': }

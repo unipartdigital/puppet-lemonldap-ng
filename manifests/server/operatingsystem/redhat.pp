@@ -21,7 +21,7 @@ class lemonldap::server::operatingsystem::redhat(
         $packageswebserver = [ 'nginx', 'lemonldap-ng-fastcgi-server', 'perl-LWP-Protocol-https', 'lasso', 'perl-Glib', 'perl-XML-Simple' ]
       }
       'apache', 'httpd': {
-        $packageswebserver = [ 'httpd', 'mod_perl', 'mod_fcgid', 'perl-LWP-Protocol-https', 'lasso', 'perl-Glib', 'perl-XML-Simple' ]
+        $packageswebserver = [ 'httpd', 'mod_perl', 'mod_fcgid', 'perl-LWP-Protocol-https', 'lasso', 'lasso-perl', 'perl-Glib', 'perl-XML-Simple' ]
       }
       default: {
         fail("Invalid webserver '${webserver}', please use nginx, apache or httpd")

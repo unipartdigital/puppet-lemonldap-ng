@@ -42,6 +42,7 @@ class lemonldap::server::operatingsystem::redhat(
         package { [
             'httpd',
             'mod_perl',
+            'mod_ssl',
             'mod_fcgid'
           ]:
           ensure  => present,

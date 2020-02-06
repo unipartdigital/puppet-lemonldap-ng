@@ -47,6 +47,7 @@ class lemonldap::server::operatingsystem::redhat(
           ]:
           ensure  => present,
         }
+        $packageswebserver = [ 'httpd', 'mod_perl', 'mod_fcgid', 'perl-LWP-Protocol-https', 'lasso', 'lasso-perl', 'perl-Glib', 'perl-XML-Simple' ]
       }
       default: {
         fail("Invalid webserver '${webserver}', please use nginx, apache or httpd")

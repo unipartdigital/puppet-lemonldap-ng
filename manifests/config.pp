@@ -42,6 +42,7 @@ class lemonldap::config (
     group  => 'apache',
     mode   => '0644',
     source => $logo_url,
+    require => Package['lemonldap-ng']
   }
 
   file { "${config_dir}/${llng_config}":
@@ -51,5 +52,6 @@ class lemonldap::config (
     mode    => '0644',
     content => template("${module_name}${config_dir}/lmConf.json.erb"),
     notify  => Service['httpd']
+    require => Package['lemonldap-ng']
   }
 }

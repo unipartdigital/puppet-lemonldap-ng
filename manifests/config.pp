@@ -37,7 +37,7 @@ class lemonldap::config (
   include ::lemonldap::params
 
   file { $company_logo:
-    ensure  => file,
+    ensure  => 'file',
     owner   => 'apache',
     group   => 'apache',
     mode    => '0644',
@@ -45,13 +45,22 @@ class lemonldap::config (
     require => Package['lemonldap-ng']
   }
 
+  file { $config_dir:
+    ensure => 'directory',
+    purge  => true,
+    owner  => 'apache',
+    group  => 'apache',
+    mode   => '0750'
+  }
+
   file { "${config_dir}/${llng_config}":
-    ensure  => file,
+    ensure  => 'file',
     owner   => 'apache',
     group   => 'apache',
     mode    => '0644',
     content => template("${module_name}${config_dir}/lmConf.json.erb"),
     notify  => Service['httpd'],
-    require => Package['lemonldap-ng']
+    require => [Package['lemonldap-ng'], File[$config_dir]]
+
   }
 }

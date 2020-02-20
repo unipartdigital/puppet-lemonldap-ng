@@ -10,11 +10,11 @@
             "catname": "<%= @company %>",
             "test1": {
                 "options": {
-                    "description": "A simple application displaying authenticated user",
+                    "description": "Unipart Digital Training",
                     "display": "auto",
                     "logo": "demo.png",
-                    "name": "Application Test 1",
-                    "uri": "https://test1.<%= @domain %>/"
+                    "name": "Inform++",
+                    "uri": "https://inform.unipart.digital/"
                 },
                 "type": "application"
             },
@@ -59,7 +59,7 @@
             "localdoc": {
                 "options": {
                     "description": "Documentation supplied with LemonLDAP::NG",
-                    "display": "on",
+                    "display": "off",
                     "logo": "help.png",
                     "name": "Local documentation",
                     "uri": "https://manager.<%= @domain %>/doc/"
@@ -69,7 +69,7 @@
             "officialwebsite": {
                 "options": {
                     "description": "Official LemonLDAP::NG Website",
-                    "display": "on",
+                    "display": "off",
                     "logo": "network.png",
                     "name": "Official Website",
                     "uri": "https://lemonldap-ng.org/"
@@ -106,7 +106,7 @@
     "certificateResetByMailCertificateAttribute": "userCertificate;binary",
     "certificateResetByMailReplyTo": "noreply@<%= @maildomain %>",
     "certificateResetByMailSender": "noreply@<%= @maildomain %>",
-    "certificateResetByMailURL": "http://auth.<%= @maildomain %>/certificateReset",
+    "certificateResetByMailURL": "http://auth.<%= @domain %>/certificateReset",
     "certificateResetByMailValidityDelay": 0,
     "cfgAuthor": "Puppet Generated",
     "cfgAuthorIP": "2001:8b0:7b17:4a17:2119:9d6f:7863:e41d",
@@ -201,7 +201,7 @@
         "memberOf": "memberOf",
         "uid": "uid"
     },
-    "ldapGroupAttributeName": "member",
+    "ldapGroupAttributeName": "<%= @ldap_group_attribute %>",
     "ldapGroupAttributeNameGroup": "dn",
     "ldapGroupAttributeNameSearch": "cn",
     "ldapGroupAttributeNameUser": "dn",

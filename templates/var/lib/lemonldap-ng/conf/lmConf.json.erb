@@ -228,19 +228,19 @@
     },
     "locationRules": {
         "auth.<%= @domain %>": {
-            "(?#checkUser)^/checkuser": "groupMatch($hGroups, 'cn', 'digital')",
+          "(?#checkUser)^/checkuser": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')",
             "(?#errors)^/lmerror/": "accept",
             "default": "accept"
         },
         "manager.<%= @domain %>": {
             "(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)": "groupMatch($hGroups, 'cn', 'sysadmins')",
-            "(?#Notifications)/(.*?\\.(fcgi|psgi)/)?notifications": "groupMatch($hGroups, 'cn', 'digital')",
-            "(?#Sessions)/(.*?\\.(fcgi|psgi)/)?sessions": "groupMatch($hGroups, 'cn', 'digital')",
-            "default": "groupMatch($hGroups, 'cn', 'digital')"
+            "(?#Notifications)/(.*?\\.(fcgi|psgi)/)?notifications": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')",
+            "(?#Sessions)/(.*?\\.(fcgi|psgi)/)?sessions": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')",
+            "default": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')"
         },
         "test1.<%= @domain %>": {
             "^/logout": "logout_sso",
-            "default": "groupMatch($hGroups, 'cn', 'digital')"
+            "default": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')"
         }
     },
     "loginHistoryEnabled": 1,

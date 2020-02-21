@@ -22,6 +22,7 @@ class lemonldap::config (
   $ldap_group_attribute   = 'member',
   $ldap_port        = '636',
   $ldap_user        = 'uid=admin,cn=users,cn=accounts,dc=example,dc=com',
+  $ldap_admin_group = 'ldapadmins',
   $ldap_password    = undef,
   $company          = 'LemonLDAP::NG',
   $llng_dir         = '/usr/share/lemonldap-ng',

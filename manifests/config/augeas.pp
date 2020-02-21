@@ -1,6 +1,14 @@
 # Build the lmConf-1 config using augeas
 class lemonldap::config::json(
+  $json = undef, # hieradata here
 ){
+  $context = '/var/lib/lemonldap-ng/conf/test.json'
+
+  augeas { $context:
+    lens => 'Json.lns',
+    incl => $context,
+  }
+
   #"AuthLDAPFilter": "<%= @authldapfilter %>",
   #            "catname": "<%= @company %>",
   #                    "uri": "https://manager.<%= @domain %>/manager.html"

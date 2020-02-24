@@ -51,11 +51,12 @@ class lemonldap::config (
   }
 
   file { $config_dir:
-    ensure => 'directory',
-    purge  => true,
-    owner  => 'apache',
-    group  => 'apache',
-    mode   => '0750'
+    ensure  => 'directory',
+    purge   => true,
+    owner   => 'apache',
+    group   => 'apache',
+    mode    => '0750',
+    require => Package['lemonldap-ng']
   }
 
   file { "${config_dir}/${llng_config}":

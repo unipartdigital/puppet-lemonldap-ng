@@ -12,8 +12,6 @@ class lemonldap::config (
   $logo_url         = 'https://cdn.example.com/company_logo.png',
   $config_dir       = '/var/lib/lemonldap-ng/conf',
   $authldapfilter   = '(&(uid=$user)(objectClass=inetOrgPerson))',
-  $domain           = $::lemonldap::params::domain,
-  $maildomain       = $::lemonldap::params::maildomain,
   $manager_dn       = 'uid=manager,cn=users,cn=accounts,dc=example,dc=com',
   $manager_password = undef,
   $ldap_server      = 'ldaps://ldap.example.com',
@@ -34,7 +32,9 @@ class lemonldap::config (
   $saml_sig_key_pub = undef
 ){
 
-  $timestamp = Timestamp().strftime('%s')
+  $domain     = $::lemonldap::params::domain
+  $maildomain = $::lemonldap::params::maildomain
+  $timestamp  = Timestamp().strftime('%s')
 #  $config_num = $facts['lemonldap_current_config'] + 1
   $config_num = 1
   $llng_config = "lmConf-${config_num}.json"

@@ -12,6 +12,7 @@ class lemonldap::config (
   $logo_url         = 'https://cdn.example.com/company_logo.png',
   $config_dir       = '/var/lib/lemonldap-ng/conf',
   $authldapfilter   = '(&(uid=$user)(objectClass=inetOrgPerson))',
+  $domain           = 'example.com',
   $maildomain       = 'example.net',
   $manager_dn       = 'uid=manager,cn=users,cn=accounts,dc=example,dc=com',
   $manager_password = undef,

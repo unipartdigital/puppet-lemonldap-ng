@@ -88,7 +88,6 @@ class lemonldap::server (
 
   class { 'lemonldap::server::webserver::apache':
     do_soap          => $do_soap,
-    domain           => $domain,
     ssl_ca_path      => $ssl_ca_path,
     ssl_cert_path    => $ssl_cert_path,
     ssl_key_path     => $ssl_key_path,

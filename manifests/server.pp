@@ -39,8 +39,6 @@ class lemonldap::server (
   Boolean $webserver_manage = true,
   Boolean $do_soap          = false,
   Boolean $do_ssl           = false,
-  String $domain            = $::lemonldap::params::domain,
-  String $maildomain        = $::lemonldap::params::maildomain,
   String $sessionstore      = 'File',
   String $ssl_ca_path       = undef,
   String $ssl_cert_path     = undef,
@@ -48,7 +46,9 @@ class lemonldap::server (
   String $lemonldap_ini     = '/etc/lemonldap-ng/lemonldap-ng.ini',
   String $webserver         = 'apache'
 ){
-  $company              = $::lemonldap::params::company
+  $company    = $::lemonldap::params::company
+  $domain     = $::lemonldap::params::domain
+  $maildomain = $::lemonldap::params::maildomain
 
   include lemonldap::params
   include lemonldap::repo

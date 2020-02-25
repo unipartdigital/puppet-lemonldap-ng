@@ -3,12 +3,12 @@
 
 class lemonldap::server::webserver::apache(
   Boolean $do_soap          = false,
-  String $domain            = $::lemonldap::params::domain,
   String $ssl_ca_path       = undef,
   String $ssl_cert_path     = undef,
   String $ssl_key_path      = undef,
   Boolean $webserver_manage = true
 ){
+  $domain = $::lemonldap::params::domain
   $vhosts = [
     '/etc/httpd/conf.d/z-lemonldap-ng-handler.conf',
     '/etc/httpd/conf.d/z-lemonldap-ng-portal.conf',

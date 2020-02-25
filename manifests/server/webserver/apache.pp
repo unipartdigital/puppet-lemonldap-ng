@@ -3,7 +3,7 @@
 
 class lemonldap::server::webserver::apache(
   Boolean $do_soap          = false,
-  String $domain            = $::lemonldap::server::domain,
+  String $domain            = $::lemonldap::params::domain,
   String $ssl_ca_path       = undef,
   String $ssl_cert_path     = undef,
   String $ssl_key_path      = undef,

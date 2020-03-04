@@ -86,7 +86,7 @@
 "PE94":"A required attribute is not available",
 "2fRegRequired":"This service requires a two-factor authentication. Register a device now, then go back to the portal.",
 "accept":"Accept",
-"accessDenied":"You have no access authorization for this application",
+"accessDenied":"403 Forbidden. Access to this application has not been authorised.",
 "accountCreated":"Your account has been created, your temporary password has been sent to your mail address.",
 "accountCreationSuccess":"Your account was successfully created.",
 "action":"Action",
@@ -177,7 +177,7 @@
 "newPwdSentTo":"A confirmation has been sent to your mail address.",
 "noHistory":"This is your first connection, welcome",
 "notAuthorized":"Not Authorized",
-"notFound": "Page unavailable",
+"notFound": "404 Not Found. The resource you have tried to access does not exist.",
 "noTOTPFound":"TOTP not found",
 "noU2FKeyFound": "U2F key not found",
 "oidcConsent":"The application %s would like to know:",
@@ -225,7 +225,7 @@
 "selectIdP":"Select your Identity Provider",
 "service":"Service",
 "sendPwd":"Send me a link",
-"serverError":"Server errors have occurred",
+"serverError":"500 Server Error: An error has occurred on the server.",
 "serviceProvidedBy":"Service provided by",
 "sessionsDeleted":"Sessions Closed",
 "sfaManager":"2ndFA Manager",
@@ -274,4 +274,3 @@
 "yourTotpKey":"Your TOTP key",
 "yubikey2f":"Yubikey"
 }
-

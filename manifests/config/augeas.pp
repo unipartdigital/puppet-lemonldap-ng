@@ -7,7 +7,6 @@ class lemonldap::config::augeas(
   # lemonldap::config
   $authldapfilter         = $lemonldap::config::authldapfilter
   $maildomain             = $lemonldap::config::maildomain
-  $domain                 = $lemonldap::config::domain
   $timestamp              = $lemonldap::config::timestamp
   $config_num             = $lemonldap::config::config_num
   $domain                 = $lemonldap::config::domain

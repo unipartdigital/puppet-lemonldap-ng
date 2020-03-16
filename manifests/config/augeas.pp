@@ -28,6 +28,7 @@ class lemonldap::config::augeas(
 
   augeas { $context:
     lens    => 'Json.lns',
+    incl    => '/var/lib/lemonldap-ng/conf/test.json',
     changes => [
       "set AuthLDAPFilter = $authldapfilter",
       "set certificateResetByMailReplyTo = noreply@${maildomain}",

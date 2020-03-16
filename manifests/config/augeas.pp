@@ -1,5 +1,5 @@
 # Build the lmConf-1 config using augeas
-class lemonldap::config::json(
+class lemonldap::config::augeas(
   $json = undef, # hieradata here
 
 ){

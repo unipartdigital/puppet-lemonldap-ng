@@ -37,7 +37,7 @@ class lemonldap::config::augeas(
       "set cfgDate = $timestamp",
       "set cfgNum = $config_num",
       "set domain = $domain",
-      "set key/$lemon_ldap_key",
+      "set key = $lemon_ldap_key",
       "set ldapBase = $ldap_base_dn",
       "set ldapGroupAttributeName = $ldap_group_attribute",
       "set ldapGroupBase = $ldap_group_base",

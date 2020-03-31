@@ -46,9 +46,9 @@ class lemonldap::server (
   String $lemonldap_ini     = '/etc/lemonldap-ng/lemonldap-ng.ini',
   String $webserver         = 'apache'
 ){
-  $company    = $::lemonldap::params::company
-  $domain     = $::lemonldap::params::domain
-  $maildomain = $::lemonldap::params::maildomain
+  $company    = $lemonldap::params::company
+  $domain     = $lemonldap::params::domain
+  $maildomain = $lemonldap::params::maildomain
 
   include lemonldap::params
   include lemonldap::repo

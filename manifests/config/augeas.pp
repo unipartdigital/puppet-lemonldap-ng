@@ -5,24 +5,24 @@ class lemonldap::config::augeas(
 ){
   # Pull this lot in wholesale. Remove later when this becomes
   # lemonldap::config
-  $authldapfilter         = $lemonldap::config::authldapfilter
-  $maildomain             = $lemonldap::config::maildomain
-  $timestamp              = $lemonldap::config::timestamp
-  $config_num             = $lemonldap::config::config_num
-  $domain                 = $lemonldap::config::domain
-  $lemon_ldap_key         = $lemonldap::config::lemon_ldap_key
-  $ldap_base_dn           = $lemonldap::config::ldap_base_dn
-  $ldap_group_attribute   = $lemonldap::config::ldap_group_attribute
-  $ldap_group_base        = $lemonldap::config::ldap_group_base
-  $ldap_group_objectclass = $lemonldap::config::ldap_group_objectclass
-  $ldap_port              = $lemonldap::config::ldap_port
-  $ldap_server            = $lemonldap::config::ldap_server
-  $manager_dn             = $lemonldap::config::manager_dn
-  $logo                   = $lemonldap::config::logo
-  $saml_enc_key           = $lemonldap::config::saml_enc_key
-  $saml_sig_key           = $lemonldap::config::saml_sig_key
-  $saml_enc_key_pub       = $lemonldap::config::saml_enc_key_pub
-  $saml_sig_key_pub       = $lemonldap::config::saml_sig_key_pub
+  $domain                 = $::lemonldap::params::domain
+  $maildomain             = $::lemonldap::params::maildomain
+  $authldapfilter         = $::lemonldap::config::authldapfilter
+  $timestamp              = $::lemonldap::config::timestamp
+  $config_num             = $::lemonldap::config::config_num
+  $lemon_ldap_key         = $::lemonldap::config::lemon_ldap_key
+  $ldap_base_dn           = $::lemonldap::config::ldap_base_dn
+  $ldap_group_attribute   = $::lemonldap::config::ldap_group_attribute
+  $ldap_group_base        = $::lemonldap::config::ldap_group_base
+  $ldap_group_objectclass = $::lemonldap::config::ldap_group_objectclass
+  $ldap_port              = $::lemonldap::config::ldap_port
+  $ldap_server            = $::lemonldap::config::ldap_server
+  $manager_dn             = $::lemonldap::config::manager_dn
+  $logo                   = $::lemonldap::config::logo
+  $saml_enc_key           = $::lemonldap::config::saml_enc_key
+  $saml_sig_key           = $::lemonldap::config::saml_sig_key
+  $saml_enc_key_pub       = $::lemonldap::config::saml_enc_key_pub
+  $saml_sig_key_pub       = $::lemonldap::config::saml_sig_key_pub
 
   $context = '/files/var/lib/lemonldap-ng/conf/test.json'
 

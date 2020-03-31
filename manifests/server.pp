@@ -51,6 +51,7 @@ class lemonldap::server (
   $maildomain = $lemonldap::params::maildomain
 
   include lemonldap::repo
+  include lemonldap::params
   include lemonldap::config
 
   # Execute OS specific actions

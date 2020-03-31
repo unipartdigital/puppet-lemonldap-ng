@@ -50,7 +50,6 @@ class lemonldap::server (
   $domain     = $lemonldap::params::domain
   $maildomain = $lemonldap::params::maildomain
 
-  include lemonldap::params
   include lemonldap::repo
   include lemonldap::config
 

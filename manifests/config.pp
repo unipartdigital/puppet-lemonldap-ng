@@ -32,13 +32,14 @@ class lemonldap::config (
   $saml_sig_key_pub = undef
 ){
 
+  $domain     = $lemonldap::params::domain
+  $maildomain = $lemonldap::params::maildomain
   $timestamp  = Timestamp().strftime('%s')
 #  $config_num = $facts['lemonldap_current_config'] + 1
   $config_num = 1
   $llng_config = "lmConf-${config_num}.json"
   $company_logo =  "${llng_dir}/${logo_dir}/${logo}"
 
-  include ::lemonldap::params
 
   file { $company_logo:
     ensure  => 'file',

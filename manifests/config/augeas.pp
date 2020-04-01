@@ -2,7 +2,6 @@
 class lemonldap::config::augeas(
   $json       = undef, # hieradata here
   $logo_dir   = 'portal/htdocs/static',
-  $logo       = 'common/logos/company_logo.png',
   $logo_url   = 'https://cdn.example.com/company_logo.png',
   $config_dir = '/var/lib/lemonldap-ng/conf',
   $llng_dir   = '/usr/share/lemonldap-ng',

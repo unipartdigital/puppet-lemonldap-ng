@@ -24,9 +24,14 @@ class lemonldap::config::augeas(
   $saml_sig_key_pub       = $lemonldap::config::saml_sig_key_pub
 
   $context = 'lmConf.json'
+  $filename = '/var/lib/lemonldap-ng/conf/test.json'
+
+  file { $filename:
+    ensure => 'present'
+  }
 
   augeas { $context:
-    incl    => '/var/lib/lemonldap-ng/conf/test.json',
+    incl    => $filename,
     lens    => 'Json.lns',
     changes => [
       "set dict/entry[. = \"AuthLDAPFilter\"]/string ${authldapfilter}",
@@ -54,6 +59,7 @@ class lemonldap::config::augeas(
       #"set samlServicePrivateKeySig $saml_sig_key",
       #"set samlServicePublicKeyEnc $saml_enc_key_pub",
       #"set samlServicePublicKeySig $saml_sig_key_pub",
-    ]
+    ],
+    require => File[$filename]
   }
 }

@@ -19,6 +19,7 @@ class lemonldap::config::augeas(
   $ldap_port              = $lemonldap::config::ldap_port
   $ldap_server            = $lemonldap::config::ldap_server
   $manager_dn             = $lemonldap::config::manager_dn
+  $manager_password       = $lemonldap::config::manager_password
   $logo                   = $lemonldap::config::logo
   $saml_enc_key           = $lemonldap::config::saml_enc_key
   $saml_sig_key           = $lemonldap::config::saml_sig_key
@@ -33,9 +34,14 @@ class lemonldap::config::augeas(
   $context = 'lmConf.json'
   $filename = '/var/lib/lemonldap-ng/conf/test.json'
 
+  # Start with a templated JSON file but with no config values included,
+  # as this is only to ensure that values we don't care about end up
+  # in the finished file. We use `replace => no` to ensure that this
+  # file doesn't get changed on every pass.
+
   file { $filename:
     ensure  => 'present',
-    content => template("${module_name}${config_dir}/lmConf.json.erb"),
+    content => template("${module_name}${config_dir}/lmConf-augeas.json.erb"),
     mode    => '0644',
     replace => 'no'
   }
@@ -45,31 +51,55 @@ class lemonldap::config::augeas(
     lens    => 'Json.lns',
     changes => [
       "set dict/entry[. = \"AuthLDAPFilter\"] AuthLDAPFilter",
+      "set dict/entry[. = \"certificateResetByMailReplyTo\"] certificateResetByMailReplyTo",
+      "set dict/entry[. = \"certificateResetByMailSender\"] certificateResetByMailSender",
+      "set dict/entry[. = \"certificateResetByMailURL\"] certificateResetByMailURL",
+      "set dict/entry[. = \"cfgDate\"] cfgDate",
+      "set dict/entry[. = \"cfgNum\"] cfgNum",
+      "set dict/entry[. = \"domain\"] domain",
+      "set dict/entry[. = \"key\"] key",
+      "set dict/entry[. = \"ldapBase\"] ldapBase",
+      "set dict/entry[. = \"ldapGroupAttributeName\"] ldapGroupAttributeName",
+      "set dict/entry[. = \"ldapGroupBase\"] ldapGroupBase",
+      "set dict/entry[. = \"ldapGroupObjectClass\"] ldapGroupObjectClass",
+      "set dict/entry[. = \"ldapPort\"] ldapPort",
+      "set dict/entry[. = \"ldapServer\"] ldapServer",
+      "set dict/entry[. = \"mailFrom\"] mailFrom",
+      "set dict/entry[. = \"mailUrl\"] mailUrl",
+      "set dict/entry[. = \"managerDn\"] managerDn",
+      "set dict/entry[. = \"managerPassword\"] managerPassword",
+      "set dict/entry[. = \"portal\"] portal",
+      "set dict/entry[. = \"portalMainLogo\"] portalMainLogo",
+      "set dict/entry[. = \"registerUrl\"] registerUrl",
+      "set dict/entry[. = \"samlServicePrivateKeyEnc\"] samlServicePrivateKeyEnc",
+      "set dict/entry[. = \"samlServicePrivateKeySig\"] samlServicePrivateKeySig",
+      "set dict/entry[. = \"samlServicePublicKeyEnc\"] samlServicePublicKeyEnc",
+      "set dict/entry[. = \"samlServicePublicKeySig\"] samlServicePublicKeySig",
       "set dict/entry[. = \"AuthLDAPFilter\"]/string ${authldapfilter}",
-      #"set certificateResetByMailReplyTo noreply@${maildomain}",
-      #"set certificateResetByMailSender noreply@${maildomain}",
-      #"set certificateResetByMailURL http://auth.${domain}/certificateReset",
-      #"set cfgDate $timestamp",
-      #"set cfgNum $config_num",
-      #"set domain $domain",
-      #"set key $lemon_ldap_key",
-      #"set ldapBase $ldap_base_dn",
-      #"set ldapGroupAttributeName $ldap_group_attribute",
-      #"set ldapGroupBase $ldap_group_base",
-      #"set ldapGroupObjectClass $ldap_group_objectclass",
-      #"set ldapPort $ldap_port",
-      #"set ldapServer $ldap_server",
-      #"set mailFrom noreply@${maildomain}",
-      #"set mailUrl https://auth.${domain}/resetpwd",
-      #"set managerDn $manager_dn",
-      #"set managerPassword $manager_password",
-      #"set portal https://auth.${domain}",
-      #"set portalMainLogo $logo",
-      #"set registerUrl https://auth.${domain}/register",
-      #"set samlServicePrivateKeyEnc $saml_enc_key",
-      #"set samlServicePrivateKeySig $saml_sig_key",
-      #"set samlServicePublicKeyEnc $saml_enc_key_pub",
-      #"set samlServicePublicKeySig $saml_sig_key_pub",
+      "set dict/entry[. = \"certificateResetByMailReplyTo\"]/string noreply@${maildomain}",
+      "set dict/entry[. = \"certificateResetByMailSender\"]/string noreply@${maildomain}",
+      "set dict/entry[. = \"certificateResetByMailURL\"]/string http://auth.${domain}/certificateReset",
+      "set dict/entry[. = \"cfgDate\"]/number ${timestamp}",
+      "set dict/entry[. = \"cfgNum\"]/number ${config_num}",
+      "set dict/entry[. = \"domain\"]/string ${domain}",
+      "set dict/entry[. = \"key\"]/string ${lemon_ldap_key}",
+      "set dict/entry[. = \"ldapBase\"]/string ${ldap_base_dn}",
+      "set dict/entry[. = \"ldapGroupAttributeName\"]/string ${ldap_group_attribute}",
+      "set dict/entry[. = \"ldapGroupBase\"]/string ${ldap_group_base}",
+      "set dict/entry[. = \"ldapGroupObjectClass\"]/string ${ldap_group_objectclass}",
+      "set dict/entry[. = \"ldapPort\"]/number ${ldap_port}",
+      "set dict/entry[. = \"ldapServer\"]/string ${ldap_server}",
+      "set dict/entry[. = \"mailFrom\"]/string noreply@${maildomain}",
+      "set dict/entry[. = \"mailUrl\"]/string https://auth.${domain}/resetpwd",
+      "set dict/entry[. = \"managerDn\"]/string ${manager_dn}",
+      "set dict/entry[. = \"managerPassword\"]/string ${manager_password}",
+      "set dict/entry[. = \"portal\"]/string https://auth.${domain}",
+      "set dict/entry[. = \"portalMainLogo\"]/string ${logo}",
+      "set dict/entry[. = \"registerUrl\"]/string https://auth.${domain}/register",
+      "set dict/entry[. = \"samlServicePrivateKeyEnc\"]/string ${saml_enc_key}",
+      "set dict/entry[. = \"samlServicePrivateKeySig\"]/string ${saml_sig_key}",
+      "set dict/entry[. = \"samlServicePublicKeyEnc\"]/string ${saml_enc_key_pub}",
+      "set dict/entry[. = \"samlServicePublicKeySig\"]/string ${saml_sig_key_pub}",
     ],
     require => File[$filename]
   }

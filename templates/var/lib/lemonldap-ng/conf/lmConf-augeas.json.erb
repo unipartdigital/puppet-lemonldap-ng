@@ -1,5 +1,5 @@
 {
-    "AuthLDAPFilter": "<%= @authldapfilter %>",
+    "AuthLDAPFilter": "",
     "SMTPServer": "",
     "SMTPTLS": "",
     "SMTPTLSOpts": {
@@ -7,7 +7,7 @@
     "activeTimer": 1,
     "applicationList": {
         "1apps": {
-            "catname": "<%= @company %>",
+            "catname": "",
             "type": "category"
         },
         "2administration": {
@@ -18,7 +18,7 @@
                     "display": "auto",
                     "logo": "configure.png",
                     "name": "WebSSO Manager",
-                    "uri": "https://manager.<%= @domain %>/manager.html"
+                    "uri": ""
                 },
                 "type": "application"
             },
@@ -28,7 +28,7 @@
                     "display": "auto",
                     "logo": "database.png",
                     "name": "Notifications explorer",
-                    "uri": "https://manager.<%= @domain %>/notifications.html"
+                    "uri": ""
                 },
                 "type": "application"
             },
@@ -38,7 +38,7 @@
                     "display": "auto",
                     "logo": "database.png",
                     "name": "Sessions explorer",
-                    "uri": "https://manager.<%= @domain %>/sessions.html"
+                    "uri": ""
                 },
                 "type": "application"
             },
@@ -52,7 +52,7 @@
                     "display": "off",
                     "logo": "help.png",
                     "name": "Local documentation",
-                    "uri": "https://manager.<%= @domain %>/doc/"
+                    "uri": ""
                 },
                 "type": "application"
             },
@@ -94,15 +94,15 @@
     "cda": 1,
     "certificateResetByMailCeaAttribute": "description",
     "certificateResetByMailCertificateAttribute": "userCertificate;binary",
-    "certificateResetByMailReplyTo": "noreply@<%= @maildomain %>",
-    "certificateResetByMailSender": "noreply@<%= @maildomain %>",
-    "certificateResetByMailURL": "http://auth.<%= @domain %>/certificateReset",
+    "certificateResetByMailReplyTo": "",
+    "certificateResetByMailSender": "",
+    "certificateResetByMailURL": "",
     "certificateResetByMailValidityDelay": 0,
     "cfgAuthor": "Puppet Generated",
     "cfgAuthorIP": "2001:8b0:7b17:4a17:2119:9d6f:7863:e41d",
-    "cfgDate": <%= @timestamp %>,
+    "cfgDate": 0,
     "cfgLog": "",
-    "cfgNum": <%= @config_num %>,
+    "cfgNum": 0,
     "cfgVersion": "2.0.7",
     "checkUserHiddenAttributes": "_loginHistory _session_id hGroups",
     "checkUserIdRule": 1,
@@ -134,12 +134,8 @@
         "mail": "mail",
         "uid": "uid"
     },
-    "domain": "<%= @domain %>",
+    "domain": "",
     "exportedHeaders": {
-        "auth.<%= @domain %>": {
-        },
-        "manager.<%= @domain %>": {
-        }
     },
     "exportedVars": {
     },
@@ -172,9 +168,9 @@
     "issuerDBSAMLRule": 1,
     "issuersTimeout": 120,
     "jsRedirect": 0,
-    "key": "<%= @lemon_ldap_key %>",
+    "key": "",
     "ldapAuthnLevel": 3,
-    "ldapBase": "<%= @ldap_base_dn %>",
+    "ldapBase": "",
     "ldapExportedVars": {
         "cn": "cn",
         "displayName": "displayName",
@@ -184,20 +180,20 @@
         "memberOf": "memberOf",
         "uid": "uid"
     },
-    "ldapGroupAttributeName": "<%= @ldap_group_attribute %>",
+    "ldapGroupAttributeName": "",
     "ldapGroupAttributeNameGroup": "dn",
     "ldapGroupAttributeNameSearch": "cn",
     "ldapGroupAttributeNameUser": "dn",
-    "ldapGroupBase": "<%= @ldap_group_base %>",
+    "ldapGroupBase": "",
     "ldapGroupDecodeSearchedValue": 0,
-    "ldapGroupObjectClass": "<%= @ldap_group_objectclass %>",
+    "ldapGroupObjectClass": "",
     "ldapGroupRecursive": 0,
     "ldapPasswordResetAttribute": "pwdReset",
     "ldapPasswordResetAttributeValue": "TRUE",
-    "ldapPort": <%= @ldap_port %>,
+    "ldapPort": 0,
     "ldapPwdEnc": "utf-8",
     "ldapSearchDeref": "find",
-    "ldapServer": "<%= @ldap_server %>",
+    "ldapServer": "",
     "ldapTimeout": 116,
     "ldapUsePasswordResetAttribute": 1,
     "ldapVersion": 3,
@@ -210,17 +206,6 @@
         "namespace": "lemonldap-ng-sessions"
     },
     "locationRules": {
-        "auth.<%= @domain %>": {
-          "(?#checkUser)^/checkuser": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')",
-            "(?#errors)^/lmerror/": "accept",
-            "default": "accept"
-        },
-        "manager.<%= @domain %>": {
-            "(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)": "groupMatch($hGroups, 'cn', 'sysadmins')",
-            "(?#Notifications)/(.*?\\.(fcgi|psgi)/)?notifications": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')",
-            "(?#Sessions)/(.*?\\.(fcgi|psgi)/)?sessions": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')",
-            "default": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')"
-        }
     },
     "loginHistoryEnabled": 1,
     "logoutServices": {
@@ -236,13 +221,13 @@
     "mail2fActivation": 0,
     "mail2fCodeRegex": "\\d{6}",
     "mailCharset": "utf-8",
-    "mailFrom": "noreply@<%= @maildomain %>",
+    "mailFrom": "",
     "mailLDAPFilter": "(&(mail=$mail)(objectClass=inetOrgPerson))",
     "mailSessionKey": "mail",
     "mailTimeout": 0,
-    "mailUrl": "https://auth.<%= @domain %>/resetpwd",
-    "managerDn": "<%= @manager_dn %>",
-    "managerPassword": "<%= @manager_password %>",
+    "mailUrl": "",
+    "managerDn": "",
+    "managerPassword": "",
     "multiValuesSeparator": "; ",
     "nginxCustomHandlers": {
     },
@@ -279,7 +264,7 @@
         "LockDirectory": "/var/lib/lemonldap-ng/psessions/lock"
     },
     "port": -1,
-    "portal": "https://auth.<%= @domain %>/",
+    "portal": "",
     "portalAntiFrame": 1,
     "portalCheckLogins": 1,
     "portalDisplayAppslist": 1,
@@ -293,7 +278,7 @@
     "portalDisplayResetPassword" : 1,
     "portalErrorOnExpiredSession": 1,
     "portalForceAuthnInterval": 5,
-    "portalMainLogo": "<%= @logo %>",
+    "portalMainLogo": "",
     "portalPingInterval": 60000,
     "portalRequireOldPassword": 1,
     "portalSkin": "bootstrap",
@@ -302,10 +287,6 @@
     },
     "portalUserAttr": "_user",
     "post": {
-        "auth.<%= @domain %>": {
-        },
-        "manager.<%= @domain %>": {
-        }
     },
     "radius2fActivation": 0,
     "radius2fTimeout": 20,
@@ -313,10 +294,10 @@
     "redirectFormMethod": "get",
     "registerDB": "LDAP",
     "registerTimeout": 0,
-    "registerUrl": "https://auth.<%= @domain %>/register",
+    "registerUrl": "",
     "reloadTimeout": 5,
     "reloadUrls": {
-        "localhost": "https://reload.<%= @domain %>/reload"
+        "localhost": ""
     },
     "requireToken": 1,
     "rest2fActivation": 0,
@@ -335,10 +316,10 @@
     "samlSPMetaDataOptions": null,
     "samlSPMetaDataXML": {
     },
-    "samlServicePrivateKeyEnc": "<%= @saml_enc_key %>",
-    "samlServicePrivateKeySig": "<%= @saml_sig_key %>",
-    "samlServicePublicKeyEnc": "<%= @saml_enc_key_pub %>",
-    "samlServicePublicKeySig": "<%= @saml_sig_key_pub %>",
+    "samlServicePrivateKeyEnc": "",
+    "samlServicePrivateKeySig": "",
+    "samlServicePublicKeyEnc": "",
+    "samlServicePublicKeySig": "",
     "samlServiceSignatureMethod": "RSA_SHA256",
     "samlServiceUseCertificateInResponse": 1,
     "samlStorageOptions": {
@@ -374,16 +355,6 @@
     "userDB": "Same",
     "utotp2fActivation": 0,
     "vhostOptions": {
-        "auth.<%= @domain %>": {
-        },
-        "manager.<%= @domain %>": {
-            "vhostAliases": "",
-            "vhostHttps": 1,
-            "vhostMaintenance": 0,
-            "vhostPort": -1,
-            "vhostServiceTokenTTL": -1,
-            "vhostType": "Main"
-        }
     },
     "whatToTrace": "_whatToTrace",
     "yubikey2fActivation": 0,

@@ -2,9 +2,6 @@
 class lemonldap::config::augeas(
   $json = undef, # hieradata here
 ){
-  notify { 'Debug':
-    message => 'Yep, got here'
-  }
   # Pull this lot in wholesale. Remove later when this becomes
   # lemonldap::config
   $domain                 = $lemonldap::params::domain
@@ -26,9 +23,11 @@ class lemonldap::config::augeas(
   $saml_enc_key_pub       = $lemonldap::config::saml_enc_key_pub
   $saml_sig_key_pub       = $lemonldap::config::saml_sig_key_pub
 
-  $context = '/files/var/lib/lemonldap-ng/conf/test.json'
+  $context = 'lmConf.json'
 
   augeas { $context:
+    incl    => '/var/lib/lemonldap-ng/conf/test.json',
+    lens    => 'Json.lns'
     changes => [
       "set AuthLDAPFilter/#text \"$authldapfilter\"",
       #"set certificateResetByMailReplyTo noreply@${maildomain}",

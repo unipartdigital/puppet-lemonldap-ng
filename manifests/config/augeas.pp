@@ -30,6 +30,7 @@ class lemonldap::config::augeas(
     ensure  => 'present',
     content => '{}',
     mode    => '0644',
+    replace => 'no'
   }
 
   augeas { $context:

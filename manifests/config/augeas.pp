@@ -27,7 +27,9 @@ class lemonldap::config::augeas(
   $filename = '/var/lib/lemonldap-ng/conf/test.json'
 
   file { $filename:
-    ensure => 'present'
+    ensure  => 'present',
+    content => '{}',
+    mode    => '0644',
   }
 
   augeas { $context:

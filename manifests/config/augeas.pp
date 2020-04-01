@@ -10,6 +10,7 @@ class lemonldap::config::augeas(
   # lemonldap::config
   $domain                 = $lemonldap::params::domain
   $maildomain             = $lemonldap::params::maildomain
+  $company                = $lemonldap::config::company
   $authldapfilter         = $lemonldap::config::authldapfilter
   $lemon_ldap_key         = $lemonldap::config::lemon_ldap_key
   $ldap_base_dn           = $lemonldap::config::ldap_base_dn
@@ -50,6 +51,7 @@ class lemonldap::config::augeas(
     incl    => $filename,
     lens    => 'Json.lns',
     changes => [
+      "set dict/entry[. = \"applications\"]/applicationList/1apps/catname/string ${company}",
       "set dict/entry[. = \"AuthLDAPFilter\"]/string ${authldapfilter}",
       "set dict/entry[. = \"certificateResetByMailReplyTo\"]/string noreply@${maildomain}",
       "set dict/entry[. = \"certificateResetByMailSender\"]/string noreply@${maildomain}",

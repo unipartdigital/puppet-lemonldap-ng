@@ -1,0 +1,393 @@
+{
+    "AuthLDAPFilter": "<%= @authldapfilter %>",
+    "SMTPServer": "",
+    "SMTPTLS": "",
+    "SMTPTLSOpts": {
+    },
+    "activeTimer": 1,
+    "applicationList": {
+        "1apps": {
+            "catname": "<%= @company %>",
+            "type": "category"
+        },
+        "2administration": {
+            "catname": "Administration",
+            "manager": {
+                "options": {
+                    "description": "Configure LemonLDAP::NG WebSSO",
+                    "display": "auto",
+                    "logo": "configure.png",
+                    "name": "WebSSO Manager",
+                    "uri": "https://manager.<%= @domain %>/manager.html"
+                },
+                "type": "application"
+            },
+            "notifications": {
+                "options": {
+                    "description": "Explore WebSSO notifications",
+                    "display": "auto",
+                    "logo": "database.png",
+                    "name": "Notifications explorer",
+                    "uri": "https://manager.<%= @domain %>/notifications.html"
+                },
+                "type": "application"
+            },
+            "sessions": {
+                "options": {
+                    "description": "Explore WebSSO sessions",
+                    "display": "auto",
+                    "logo": "database.png",
+                    "name": "Sessions explorer",
+                    "uri": "https://manager.<%= @domain %>/sessions.html"
+                },
+                "type": "application"
+            },
+            "type": "category"
+        },
+        "3documentation": {
+            "catname": "Documentation",
+            "localdoc": {
+                "options": {
+                    "description": "Documentation supplied with LemonLDAP::NG",
+                    "display": "off",
+                    "logo": "help.png",
+                    "name": "Local documentation",
+                    "uri": "https://manager.<%= @domain %>/doc/"
+                },
+                "type": "application"
+            },
+            "officialwebsite": {
+                "options": {
+                    "description": "Official LemonLDAP::NG Website",
+                    "display": "off",
+                    "logo": "network.png",
+                    "name": "Official Website",
+                    "uri": "https://lemonldap-ng.org/"
+                },
+                "type": "application"
+            },
+            "type": "category"
+        }
+    },
+    "authChoiceModules": {
+        "External": "LDAP;LDAP;LDAP;;;{}"
+    },
+    "authChoiceParam": "lmAuth",
+    "authentication": "Choice",
+    "autoSigninRules": {
+    },
+    "captcha_mail_enabled": 1,
+    "captcha_register_enabled": 1,
+    "captcha_size": 6,
+    "casAccessControlPolicy": "none",
+    "casAppMetaDataExportedVars": null,
+    "casAppMetaDataMacros": null,
+    "casAppMetaDataOptions": {
+    },
+    "casAttributes": {
+    },
+    "casSrvMetaDataExportedVars": null,
+    "casSrvMetaDataOptions": {
+    },
+    "casStorageOptions": {
+    },
+    "cda": 1,
+    "certificateResetByMailCeaAttribute": "description",
+    "certificateResetByMailCertificateAttribute": "userCertificate;binary",
+    "certificateResetByMailReplyTo": "noreply@<%= @maildomain %>",
+    "certificateResetByMailSender": "noreply@<%= @maildomain %>",
+    "certificateResetByMailURL": "http://auth.<%= @domain %>/certificateReset",
+    "certificateResetByMailValidityDelay": 0,
+    "cfgAuthor": "Puppet Generated",
+    "cfgAuthorIP": "2001:8b0:7b17:4a17:2119:9d6f:7863:e41d",
+    "cfgDate": <%= @timestamp %>,
+    "cfgLog": "",
+    "cfgNum": <%= @config_num %>,
+    "cfgVersion": "2.0.7",
+    "checkUserHiddenAttributes": "_loginHistory _session_id hGroups",
+    "checkUserIdRule": 1,
+    "checkXSS": 1,
+    "confirmFormMethod": "post",
+    "contextSwitchingIdRule": 1,
+    "contextSwitchingRule": 0,
+    "contextSwitchingStopWithLogout": 1,
+    "cookieName": "lemonldap",
+    "corsAllow_Credentials": "true",
+    "corsAllow_Headers": "*",
+    "corsAllow_Methods": "POST,GET",
+    "corsAllow_Origin": "*",
+    "corsEnabled": 1,
+    "corsExpose_Headers": "*",
+    "corsMax_Age": "86400",
+    "cspConnect": "'self'",
+    "cspDefault": "'self'",
+    "cspFont": "'self'",
+    "cspFormAction": "'self'",
+    "cspImg": "'self' data:",
+    "cspScript": "'self'",
+    "cspStyle": "'self'",
+    "customPluginsParams": {
+    },
+    "decryptValueRule": 0,
+    "demoExportedVars": {
+        "cn": "cn",
+        "mail": "mail",
+        "uid": "uid"
+    },
+    "domain": "<%= @domain %>",
+    "exportedHeaders": {
+        "auth.<%= @domain %>": {
+        },
+        "manager.<%= @domain %>": {
+        }
+    },
+    "exportedVars": {
+    },
+    "ext2fActivation": 0,
+    "ext2fCodeActivation": "\\d{6}",
+    "failedLoginNumber": 5,
+    "formTimeout": 120,
+    "globalLogoutRule": 0,
+    "globalLogoutTimer": 1,
+    "globalStorage": "Apache::Session::File",
+    "globalStorageOptions": {
+        "Directory": "/var/lib/lemonldap-ng/sessions",
+        "LockDirectory": "/var/lib/lemonldap-ng/sessions/lock",
+        "generateModule": "Lemonldap::NG::Common::Apache::Session::Generate::SHA256"
+    },
+    "grantSessionRules": {
+    },
+    "groups": {
+    },
+    "hiddenAttributes": "_password _2fDevices",
+    "httpOnly": 1,
+    "https": -1,
+    "impersonationHiddenAttributes": "_2fDevices _loginHistory",
+    "impersonationIdRule": 1,
+    "impersonationMergeSSOgroups": 0,
+    "impersonationRule": 0,
+    "impersonationSkipEmptyValues": 1,
+    "infoFormMethod": "get",
+    "issuerDBSAMLActivation": 1,
+    "issuerDBSAMLRule": 1,
+    "issuersTimeout": 120,
+    "jsRedirect": 0,
+    "key": "<%= @lemon_ldap_key %>",
+    "ldapAuthnLevel": 3,
+    "ldapBase": "<%= @ldap_base_dn %>",
+    "ldapExportedVars": {
+        "cn": "cn",
+        "displayName": "displayName",
+        "employeeNumber": "employeeNumber",
+        "ipaUniqueID": "ipaUniqueID",
+        "mail": "mail",
+        "memberOf": "memberOf",
+        "uid": "uid"
+    },
+    "ldapGroupAttributeName": "<%= @ldap_group_attribute %>",
+    "ldapGroupAttributeNameGroup": "dn",
+    "ldapGroupAttributeNameSearch": "cn",
+    "ldapGroupAttributeNameUser": "dn",
+    "ldapGroupBase": "<%= @ldap_group_base %>",
+    "ldapGroupDecodeSearchedValue": 0,
+    "ldapGroupObjectClass": "<%= @ldap_group_objectclass %>",
+    "ldapGroupRecursive": 0,
+    "ldapPasswordResetAttribute": "pwdReset",
+    "ldapPasswordResetAttributeValue": "TRUE",
+    "ldapPort": <%= @ldap_port %>,
+    "ldapPwdEnc": "utf-8",
+    "ldapSearchDeref": "find",
+    "ldapServer": "<%= @ldap_server %>",
+    "ldapTimeout": 116,
+    "ldapUsePasswordResetAttribute": 1,
+    "ldapVersion": 3,
+    "localSessionStorage": "Cache::FileCache",
+    "localSessionStorageOptions": {
+        "cache_depth": 3,
+        "cache_root": "/tmp",
+        "default_expires_in": 600,
+        "directory_umask": "007",
+        "namespace": "lemonldap-ng-sessions"
+    },
+    "locationRules": {
+        "auth.<%= @domain %>": {
+          "(?#checkUser)^/checkuser": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')",
+            "(?#errors)^/lmerror/": "accept",
+            "default": "accept"
+        },
+        "manager.<%= @domain %>": {
+            "(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)": "groupMatch($hGroups, 'cn', 'sysadmins')",
+            "(?#Notifications)/(.*?\\.(fcgi|psgi)/)?notifications": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')",
+            "(?#Sessions)/(.*?\\.(fcgi|psgi)/)?sessions": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')",
+            "default": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')"
+        }
+    },
+    "loginHistoryEnabled": 1,
+    "logoutServices": {
+    },
+    "lwpOpts": {
+    },
+    "lwpSslOpts": {
+    },
+    "macros": {
+        "UA": "$ENV{HTTP_USER_AGENT}",
+        "_whatToTrace": "$_auth eq 'SAML' ? lc($_user.'@'.$_idpConfKey) : $_auth eq 'OpenIDConnect' ? lc($_user.'@'.$_oidcConnectedRP) : lc($_user)"
+    },
+    "mail2fActivation": 0,
+    "mail2fCodeRegex": "\\d{6}",
+    "mailCharset": "utf-8",
+    "mailFrom": "noreply@<%= @maildomain %>",
+    "mailLDAPFilter": "(&(mail=$mail)(objectClass=inetOrgPerson))",
+    "mailSessionKey": "mail",
+    "mailTimeout": 0,
+    "mailUrl": "https://auth.<%= @domain %>/resetpwd",
+    "managerDn": "<%= @manager_dn %>",
+    "managerPassword": "<%= @manager_password %>",
+    "multiValuesSeparator": "; ",
+    "nginxCustomHandlers": {
+    },
+    "notification": 1,
+    "notificationDefaultCond": "",
+    "notificationServerPOST": 1,
+    "notificationServerSentAttributes": "uid reference date title subtitle text check",
+    "notificationStorage": "File",
+    "notificationStorageOptions": {
+        "dirName": "/var/lib/lemonldap-ng/notifications"
+    },
+    "notificationWildcard": "allusers",
+    "notifyDeleted": 1,
+    "nullAuthnLevel": 0,
+    "oidcOPMetaDataExportedVars": null,
+    "oidcOPMetaDataJSON": {
+    },
+    "oidcOPMetaDataJWKS": null,
+    "oidcOPMetaDataOptions": null,
+    "oidcRPMetaDataExportedVars": null,
+    "oidcRPMetaDataMacros": null,
+    "oidcRPMetaDataOptions": {
+    },
+    "oidcRPMetaDataOptionsExtraClaims": null,
+    "passwordDB": "Choice",
+    "passwordPolicyMinDigit": 0,
+    "passwordPolicyMinLower": 0,
+    "passwordPolicyMinSize": 0,
+    "passwordPolicyMinUpper": 0,
+    "passwordResetAllowedRetries": 3,
+    "persistentStorage": "Apache::Session::File",
+    "persistentStorageOptions": {
+        "Directory": "/var/lib/lemonldap-ng/psessions",
+        "LockDirectory": "/var/lib/lemonldap-ng/psessions/lock"
+    },
+    "port": -1,
+    "portal": "https://auth.<%= @domain %>/",
+    "portalAntiFrame": 1,
+    "portalCheckLogins": 1,
+    "portalDisplayAppslist": 1,
+    "portalDisplayCertificateResetByMail": 0,
+    "portalDisplayChangePassword": "$_auth =~ /^(LDAP|DBI)$/",
+    "portalDisplayGeneratePassword": 1,
+    "portalDisplayLoginHistory": 1,
+    "portalDisplayLogout": 1,
+    "portalDisplayOidcConsents": "$_oidcConnectedRP",
+    "portalDisplayRegister": 1,
+    "portalDisplayResetPassword" : 1,
+    "portalErrorOnExpiredSession": 1,
+    "portalForceAuthnInterval": 5,
+    "portalMainLogo": "<%= @logo %>",
+    "portalPingInterval": 60000,
+    "portalRequireOldPassword": 1,
+    "portalSkin": "bootstrap",
+    "portalSkinBackground": "",
+    "portalSkinRules": {
+    },
+    "portalUserAttr": "_user",
+    "post": {
+        "auth.<%= @domain %>": {
+        },
+        "manager.<%= @domain %>": {
+        }
+    },
+    "radius2fActivation": 0,
+    "radius2fTimeout": 20,
+    "randomPasswordRegexp": "[A-Z]{3}[a-z]{5}.\\d{2}",
+    "redirectFormMethod": "get",
+    "registerDB": "LDAP",
+    "registerTimeout": 0,
+    "registerUrl": "https://auth.<%= @domain %>/register",
+    "reloadTimeout": 5,
+    "reloadUrls": {
+        "localhost": "https://reload.<%= @domain %>/reload"
+    },
+    "requireToken": 1,
+    "rest2fActivation": 0,
+    "rest2fInitArgs": {
+    },
+    "rest2fVerifyArgs": {
+    },
+    "restClockTolerance": 15,
+    "samlEntityID": "#PORTAL#/saml/metadata",
+    "samlIDPMetaDataExportedAttributes": null,
+    "samlIDPMetaDataOptions": null,
+    "samlIDPMetaDataXML": {
+    },
+    "samlSPMetaDataExportedAttributes": null,
+    "samlSPMetaDataMacros": null,
+    "samlSPMetaDataOptions": null,
+    "samlSPMetaDataXML": {
+    },
+    "samlServicePrivateKeyEnc": "<%= @saml_enc_key %>",
+    "samlServicePrivateKeySig": "<%= @saml_sig_key %>",
+    "samlServicePublicKeyEnc": "<%= @saml_enc_key_pub %>",
+    "samlServicePublicKeySig": "<%= @saml_sig_key_pub %>",
+    "samlServiceSignatureMethod": "RSA_SHA256",
+    "samlServiceUseCertificateInResponse": 1,
+    "samlStorageOptions": {
+    },
+    "securedCookie": "1",
+    "sessionDataToRemember": {
+    },
+    "sfExtra": {
+    },
+    "sfRemovedMsgRule": 0,
+    "sfRemovedNotifMsg": "_removedSF_ expired second factor(s) has/have been removed!",
+    "sfRemovedNotifRef": "RemoveSF",
+    "sfRemovedNotifTitle": "Second factor notification",
+    "sfRequired": 0,
+    "showLanguages": 1,
+    "successLoginNumber": 5,
+    "timeout": 72000,
+    "timeoutActivity": 0,
+    "timeoutActivityInterval": 60,
+    "totp2fActivation": 0,
+    "totp2fDigits": 6,
+    "totp2fInterval": 30,
+    "totp2fRange": 1,
+    "totp2fSelfRegistration": 0,
+    "totp2fUserCanRemoveKey": 1,
+    "u2fActivation": 0,
+    "u2fSelfRegistration": 0,
+    "u2fUserCanRemoveKey": 1,
+    "upgradeSession": 1,
+    "useRedirectOnError": 1,
+    "useSafeJail": 1,
+    "userControl": "^[\\w\\.\\-@]+$",
+    "userDB": "Same",
+    "utotp2fActivation": 0,
+    "vhostOptions": {
+        "auth.<%= @domain %>": {
+        },
+        "manager.<%= @domain %>": {
+            "vhostAliases": "",
+            "vhostHttps": 1,
+            "vhostMaintenance": 0,
+            "vhostPort": -1,
+            "vhostServiceTokenTTL": -1,
+            "vhostType": "Main"
+        }
+    },
+    "whatToTrace": "_whatToTrace",
+    "yubikey2fActivation": 0,
+    "yubikey2fPublicIDSize": 12,
+    "yubikey2fSelfRegistration": 0,
+    "yubikey2fUserCanRemoveKey": 1
+}

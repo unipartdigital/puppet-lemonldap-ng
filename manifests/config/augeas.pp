@@ -52,6 +52,10 @@ class lemonldap::config::augeas(
     lens    => 'Json.lns',
     changes => [
       "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"1apps\"]/dict/entry[. = \"catname\"]/string ${company}",
+      "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"2administration\"]/dict/entry[. = \"manager\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string https://manager.${domain}/manager.html",
+      "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"2administration\"]/dict/entry[. = \"notifications\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string https://manager.${domain}/notifications.html",
+      "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"2administration\"]/dict/entry[. = \"sessions\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string https://manager.${domain}/sessions.html",
+      "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"3documentation\"]/dict/entry[. = \"localdoc\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string https://manager.${domain}/doc/",
       "set dict/entry[. = \"AuthLDAPFilter\"]/string ${authldapfilter}",
       "set dict/entry[. = \"certificateResetByMailReplyTo\"]/string noreply@${maildomain}",
       "set dict/entry[. = \"certificateResetByMailSender\"]/string noreply@${maildomain}",

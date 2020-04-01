@@ -1,6 +1,11 @@
 # Build the lmConf-1 config using augeas
 class lemonldap::config::augeas(
-  $json = undef, # hieradata here
+  $json       = undef, # hieradata here
+  $logo_dir   = 'portal/htdocs/static',
+  $logo       = 'common/logos/company_logo.png',
+  $logo_url   = 'https://cdn.example.com/company_logo.png',
+  $config_dir = '/var/lib/lemonldap-ng/conf',
+  $llng_dir   = '/usr/share/lemonldap-ng',
 ){
   # Pull this lot in wholesale. Remove later when this becomes
   # lemonldap::config
@@ -23,12 +28,17 @@ class lemonldap::config::augeas(
   $saml_enc_key_pub       = $lemonldap::config::saml_enc_key_pub
   $saml_sig_key_pub       = $lemonldap::config::saml_sig_key_pub
 
+  $timestamp  = Timestamp().strftime('%s')
+  $config_num = 1
+  $llng_config = "lmConf-${config_num}.json"
+  $company_logo =  "${llng_dir}/${logo_dir}/${logo}"
+
   $context = 'lmConf.json'
   $filename = '/var/lib/lemonldap-ng/conf/test.json'
 
   file { $filename:
     ensure  => 'present',
-    content => '{}',
+    content => template("${module_name}${config_dir}/lmConf.json.erb"),
     mode    => '0644',
     replace => 'no'
   }

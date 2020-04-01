@@ -1,8 +1,10 @@
 # Build the lmConf-1 config using augeas
 class lemonldap::config::augeas(
   $json = undef, # hieradata here
-
 ){
+  notify { 'Debug':
+    message => 'Yep, got here'
+  }
   # Pull this lot in wholesale. Remove later when this becomes
   # lemonldap::config
   $domain                 = $lemonldap::params::domain

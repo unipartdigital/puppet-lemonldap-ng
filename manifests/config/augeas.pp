@@ -11,8 +11,6 @@ class lemonldap::config::augeas(
   $domain                 = $lemonldap::params::domain
   $maildomain             = $lemonldap::params::maildomain
   $authldapfilter         = $lemonldap::config::authldapfilter
-  $timestamp              = $lemonldap::config::timestamp
-  $config_num             = $lemonldap::config::config_num
   $lemon_ldap_key         = $lemonldap::config::lemon_ldap_key
   $ldap_base_dn           = $lemonldap::config::ldap_base_dn
   $ldap_group_attribute   = $lemonldap::config::ldap_group_attribute

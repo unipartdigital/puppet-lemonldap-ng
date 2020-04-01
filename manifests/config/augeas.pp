@@ -29,7 +29,7 @@ class lemonldap::config::augeas(
     incl    => '/var/lib/lemonldap-ng/conf/test.json',
     lens    => 'Json.lns',
     changes => [
-      "set dict/entry[. = \"AuthLDAPFilter\"]/string ${authldapfilter},
+      "set dict/entry[. = \"AuthLDAPFilter\"]/string ${authldapfilter}",
       #"set certificateResetByMailReplyTo noreply@${maildomain}",
       #"set certificateResetByMailSender noreply@${maildomain}",
       #"set certificateResetByMailURL http://auth.${domain}/certificateReset",

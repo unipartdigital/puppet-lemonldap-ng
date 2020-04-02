@@ -83,7 +83,7 @@ class lemonldap::config::augeas(
 
   $locationchanges = [
     "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"] \"auth.${domain}\"",
-    "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"(?#checkUser)^/checkuser\"] \"(?#checkUser)^/checkuser\"",
+    "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"\(?#checkUser\)^/checkuser\"] \"(?#checkUser)^/checkuser\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"(?#checkUser)^/checkuser\"]/string \"groupMatch($hGroups, 'cn', '${ldap_admin_group}')\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"(?#errors)^/lmerror/\"] \"(?#errors)^/lmerror/\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"(?#errors)^/lmerror/\"]/string \"accept\"",

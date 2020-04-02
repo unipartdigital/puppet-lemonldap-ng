@@ -100,10 +100,17 @@ class lemonldap::config::augeas(
     "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Sessions)/(.*?\\\\.(fcgi|psgi)/)?sessions\"]/string \"groupMatch($hGroups, 'cn', '${ldap_admin_group}')\"",
   ]
 
+  $otherchanges = [
+    "set dict/entry[. = \"post\"]/dict/entry[1] \"auth.${domain}\"",
+    "set dict/entry[. = \"post\"]/dict/entry[2] \"manager.${domain}\"",
+    "set dict/entry[. = \"vhostOptions\"]/dict/entry[1] \"auth.${domain}\"",
+    "set dict/entry[. = \"vhostOptions\"]/dict/entry[2] \"manager.${domain}\"",
+  ]
+
   augeas { $context:
     incl    => $filename,
     lens    => 'Json.lns',
-    changes => $flatchanges + $locationchanges,
+    changes => $flatchanges + $locationchanges + $otherchanges,
     require => File[$filename]
   }
 }

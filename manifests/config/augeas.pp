@@ -91,7 +91,7 @@ class lemonldap::config::augeas(
     "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"default\"]/string \"accept\"",
     "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"] \"manager.${domain}\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)\"] \"(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)\"",
-    # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)\"]/string \"groupMatch($hGroups, 'cn', 'sysadmins')\"",
+    # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)\"]/string \"groupMatch($hGroups, 'cn', '${ldap_admin_group}')\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Notifications)/(.*?\\.(fcgi|psgi)/)?notifications\"] \"(?#Notifications)/(.*?\\.(fcgi|psgi)/)?notifications\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Notifications)/(.*?\\.(fcgi|psgi)/)?notifications\"]/string \"groupMatch($hGroups, 'cn', '${ldap_admin_group}')\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Sessions)/(.*?\\.(fcgi|psgi)/)?sessions\"] \"(?#Sessions)/(.*?\\.(fcgi|psgi)/)?sessions\"",

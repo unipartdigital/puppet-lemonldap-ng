@@ -90,15 +90,14 @@ class lemonldap::config::augeas(
     "set dict/entry[. = \"vhostOptions\"]/dict/entry[2] \"manager.${domain}\"",
   ]
 
-  $locationchanges = []
-
-  $map_test = [1, 2, 3].map |$first| {
-    [String($first)] + [1, 2, 3].map |$second| {
-      String($first * 10 + $second)
+  $locationchanges = $location_rules.map |$k, $v| {
+    ["set dict/entry[. = \"locationRules\"]/dict/entry[. = \"${k}\"] \"${k}\""] + $v.map |$loc, $rule| {
+      [
+        "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"${k}\"]/dict/entry[. = \"${loc}\"] \"${loc}\"",
+        "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"${k}\"]/dict/entry[. = \"${loc}\"]/string \"${rule}\""
+      ]
     }
   }
-
-  notify { $map_test: }
 
   # $locationchanges = [
   #   "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"] \"auth.${domain}\"",

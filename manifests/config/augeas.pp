@@ -83,12 +83,12 @@ class lemonldap::config::augeas(
 
   $locationchanges = [
     "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"] \"auth.${domain}\"",
-    "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[0] \"(?#checkUser)^/checkuser\"",
+    "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[1] \"(?#checkUser)^/checkuser\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"(?#checkUser)^/checkuser\"]/string \"groupMatch($hGroups, 'cn', '${ldap_admin_group}')\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"(?#errors)^/lmerror/\"] \"(?#errors)^/lmerror/\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"(?#errors)^/lmerror/\"]/string \"accept\"",
-    "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"default\"] \"default\"",
-    "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"default\"]/string \"accept\"",
+    "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[2] \"default\"",
+    "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[2]/string \"accept\"",
     "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"] \"manager.${domain}\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)\"] \"(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)\"]/string \"groupMatch($hGroups, 'cn', '${ldap_admin_group}')\"",

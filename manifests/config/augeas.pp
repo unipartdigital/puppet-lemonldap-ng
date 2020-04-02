@@ -83,15 +83,15 @@ class lemonldap::config::augeas(
 
   $locationchanges = [
     "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"] \"auth.${domain}\"",
-    "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[1] \"(?#checkUser)^/checkuser\"",
-    "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[1]/string \"debug\"",
+    # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[1] \"(?#checkUser)^/checkuser\"",
+    # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[1]/string \"debug\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[2] \"(?#errors)^/lmerror/\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[2]/string \"accept\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[3] \"default\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[3]/string \"accept\"",
     "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"] \"manager.${domain}\"",
-    "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[1] \"(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)\"",
-    "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[1]/string \"debug\"",
+    # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[1] \"(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)\"",
+    # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[1]/string \"debug\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[2] \"(?#Notifications)/(.*?\\.(fcgi|psgi)/)?notifications\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[2]/string \"debug\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[3] \"(?#Sessions)/(.*?\\.(fcgi|psgi)/)?sessions\"",
@@ -99,6 +99,7 @@ class lemonldap::config::augeas(
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[4] \"default\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[4]/string \"debug\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"] \"auth.${domain}\"",
+
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[1] \"(?#checkUser)^/checkuser\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[1]/string \"groupMatch($hGroups, 'cn', '${ldap_admin_group}')\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[2] \"(?#errors)^/lmerror/\"",

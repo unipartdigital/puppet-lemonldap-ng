@@ -93,7 +93,7 @@ class lemonldap::config::augeas(
   $locationchanges = []
 
   $map_test = [1, 2, 3].map |$first| {
-    [1, 2, 3].map |$second| {
+    [String($first)] + [1, 2, 3].map |$second| {
       String($first * 10 + $second)
     }
   }

@@ -94,7 +94,7 @@ class lemonldap::config::augeas(
 
   $map_test = [1, 2, 3].map |$first| {
     [1, 2, 3].map |$second| {
-      $first * 10 + $second
+      String($first * 10 + $second)
     }
   }
 

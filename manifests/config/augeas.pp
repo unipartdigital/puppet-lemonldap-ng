@@ -45,7 +45,7 @@ class lemonldap::config::augeas(
 
   file { $filename:
     ensure  => 'present',
-    content => template("${module_name}${config_dir}/lmConf-augeas.json.erb"),
+    content => file("${module_name}${config_dir}/lmConf-augeas.json"),
     mode    => '0644',
     replace => 'no'
   }
@@ -60,6 +60,7 @@ class lemonldap::config::augeas(
     "set dict/entry[. = \"certificateResetByMailReplyTo\"]/string \"noreply@${maildomain}\"",
     "set dict/entry[. = \"certificateResetByMailSender\"]/string \"noreply@${maildomain}\"",
     "set dict/entry[. = \"certificateResetByMailURL\"]/string \"http://auth.${domain}/certificateReset\"",
+    "set dict/entry[. = \"cfgDate\"]/number ${timestamp}",
     "set dict/entry[. = \"cfgNum\"]/number ${config_num}",
     "set dict/entry[. = \"domain\"]/string \"${domain}\"",
     "set dict/entry[. = \"key\"]/string \"${lemon_ldap_key}\"",

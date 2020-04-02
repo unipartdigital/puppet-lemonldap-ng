@@ -84,7 +84,7 @@ class lemonldap::config::augeas(
   $locationchanges = [
     "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"] \"auth.${domain}\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"(?#checkUser)^/checkuser\"] \"(?#checkUser)^/checkuser\"",
-    # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"(?#checkUser)^/checkuser\"]/string \"groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')\"",
+    # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"(?#checkUser)^/checkuser\"]/string \"groupMatch($hGroups, 'cn', '${ldap_admin_group}')\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"(?#errors)^/lmerror/\"] \"(?#errors)^/lmerror/\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"(?#errors)^/lmerror/\"]/string \"accept\"",
     "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"auth.${domain}\"]/dict/entry[. = \"default\"] \"default\"",
@@ -93,11 +93,11 @@ class lemonldap::config::augeas(
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)\"] \"(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)\"]/string \"groupMatch($hGroups, 'cn', 'sysadmins')\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Notifications)/(.*?\\.(fcgi|psgi)/)?notifications\"] \"(?#Notifications)/(.*?\\.(fcgi|psgi)/)?notifications\"",
-    # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Notifications)/(.*?\\.(fcgi|psgi)/)?notifications\"]/string \"groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')\"",
+    # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Notifications)/(.*?\\.(fcgi|psgi)/)?notifications\"]/string \"groupMatch($hGroups, 'cn', '${ldap_admin_group}')\"",
     # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Sessions)/(.*?\\.(fcgi|psgi)/)?sessions\"] \"(?#Sessions)/(.*?\\.(fcgi|psgi)/)?sessions\"",
-    # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Sessions)/(.*?\\.(fcgi|psgi)/)?sessions\"]/string \"groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')\"",
+    # "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Sessions)/(.*?\\.(fcgi|psgi)/)?sessions\"]/string \"groupMatch($hGroups, 'cn', '${ldap_admin_group}')\"",
     "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"default\"] \"default\"",
-    "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"default\"]/string \"groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')\"",
+    "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"default\"]/string \"groupMatch($hGroups, 'cn', '${ldap_admin_group}')\"",
   ]
 
   augeas { $context:

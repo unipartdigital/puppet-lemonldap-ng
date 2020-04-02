@@ -29,7 +29,8 @@ class lemonldap::config (
   $saml_enc_key     = undef,
   $saml_sig_key     = undef,
   $saml_enc_key_pub = undef,
-  $saml_sig_key_pub = undef
+  $saml_sig_key_pub = undef,
+  $location_rules   = {}
 ){
 
   $domain     = $lemonldap::params::domain

@@ -35,10 +35,13 @@ class lemonldap::config::augeas(
   $context = 'lmConf.json'
   $filename = '/var/lib/lemonldap-ng/conf/test.json'
 
-  # Start with a templated JSON file but with no config values included,
-  # as this is only to ensure that values we don't care about end up
+  # Start with a templated JSON file but with no important config values included,
+  # as this is only to ensure that values we don't care about still end up
   # in the finished file. We use `replace => no` to ensure that this
-  # file doesn't get changed on every pass.
+  # file doesn't get changed on every pass. Every value that we ever care
+  # about MUST be changed by Augeas rather than templated here, in order
+  # to ensure that changes after file creation are picked up,
+  # and to keep the whole thing idempotent.
 
   file { $filename:
     ensure  => 'present',
@@ -70,8 +73,10 @@ class lemonldap::config::augeas(
     "set dict/entry[. = \"mailUrl\"]/string \"https://auth.${domain}/resetpwd\"",
     "set dict/entry[. = \"managerDn\"]/string \"${manager_dn}\"",
     "set dict/entry[. = \"managerPassword\"]/string \"${manager_password}\"",
-    "set dict/entry[. = \"portal\"]/string \"https://auth.${domain}\"",
+    "set dict/entry[. = \"portal\"]/string \"https://auth.${domain}/\"",
     "set dict/entry[. = \"portalMainLogo\"]/string \"${logo}\"",
+    "set dict/entry[. = \"post\"]/dict/entry[1] \"auth.${domain}\"",
+    "set dict/entry[. = \"post\"]/dict/entry[2] \"manager.${domain}\"",
     "set dict/entry[. = \"registerUrl\"]/string \"https://auth.${domain}/register\"",
     "set dict/entry[. = \"reloadUrls\"]/dict/entry[. = \"localhost\"] \"localhost\"",
     "set dict/entry[. = \"reloadUrls\"]/dict/entry[. = \"localhost\"]/string \"https://reload.${domain}/reload\"",
@@ -79,6 +84,8 @@ class lemonldap::config::augeas(
     "set dict/entry[. = \"samlServicePrivateKeySig\"]/string \"${saml_sig_key}\"",
     "set dict/entry[. = \"samlServicePublicKeyEnc\"]/string \"${saml_enc_key_pub}\"",
     "set dict/entry[. = \"samlServicePublicKeySig\"]/string \"${saml_sig_key_pub}\"",
+    "set dict/entry[. = \"vhostOptions\"]/dict/entry[1] \"auth.${domain}\"",
+    "set dict/entry[. = \"vhostOptions\"]/dict/entry[2] \"manager.${domain}\"",
   ]
 
   $locationchanges = [
@@ -100,17 +107,10 @@ class lemonldap::config::augeas(
     "set dict/entry[. = \"locationRules\"]/dict/entry[. = \"manager.${domain}\"]/dict/entry[. = \"(?#Sessions)/(.*?\\\\.(fcgi|psgi)/)?sessions\"]/string \"groupMatch($hGroups, 'cn', '${ldap_admin_group}')\"",
   ]
 
-  $otherchanges = [
-    "set dict/entry[. = \"post\"]/dict/entry[1] \"auth.${domain}\"",
-    "set dict/entry[. = \"post\"]/dict/entry[2] \"manager.${domain}\"",
-    "set dict/entry[. = \"vhostOptions\"]/dict/entry[1] \"auth.${domain}\"",
-    "set dict/entry[. = \"vhostOptions\"]/dict/entry[2] \"manager.${domain}\"",
-  ]
-
   augeas { $context:
     incl    => $filename,
     lens    => 'Json.lns',
-    changes => $flatchanges + $locationchanges + $otherchanges,
+    changes => $flatchanges + $locationchanges,
     require => File[$filename]
   }
 }

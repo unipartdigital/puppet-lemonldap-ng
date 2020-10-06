@@ -88,7 +88,7 @@ class lemonldap::config (
     "set dict/entry[. = \"certificateResetByMailSender\"]/string \"noreply@${maildomain}\"",
     "set dict/entry[. = \"certificateResetByMailURL\"]/string \"http://${auth_domain}.${domain}/certificateReset\"",
     "set dict/entry[. = \"cfgDate\"]/number ${timestamp}",
-    "set dict/entry[. = \"cfgNum\"]/string \"${config_num}\"",
+    "set dict/entry[. = \"cfgNum\"]/number \"${config_num}\"",
     "set dict/entry[. = \"domain\"]/string \"${domain}\"",
     "set dict/entry[. = \"key\"]/string \"${lemon_ldap_key}\"",
     "set dict/entry[. = \"ldapBase\"]/string \"${ldap_base_dn}\"",

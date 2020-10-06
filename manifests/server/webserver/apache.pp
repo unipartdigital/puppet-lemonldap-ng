@@ -8,7 +8,11 @@ class lemonldap::server::webserver::apache(
   String $ssl_key_path      = undef,
   Boolean $webserver_manage = true
 ){
-  $domain = $lemonldap::params::domain
+  $domain         = $lemonldap::params::domain
+  $manager_domain = $lemonldap::params::manager_domain
+  $reload_domain  = $lemonldap::params::reload_domain
+  $auth_domain    = $lemonldap::params::auth_domain
+  $reset_domain   = $lemonldap::params::reset_domain
   $vhosts = [
     '/etc/httpd/conf.d/z-lemonldap-ng-handler.conf',
     '/etc/httpd/conf.d/z-lemonldap-ng-portal.conf',

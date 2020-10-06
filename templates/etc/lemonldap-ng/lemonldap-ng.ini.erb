@@ -27,7 +27,7 @@ languages    = en, fr, vi, it, ar, de, fi
 ;SMTPAuthPass = secret
 ;mailFrom = password-reset@<%= @maildomain %>
 ;mailReplyTo = noreply@<%= @maildomain %>
-;mailUrl = http://reset.<%= @domain %>
+;mailUrl = http://<%= @reset_domain %>.<%= @domain %>
 ;mailConfirmSubject = <%= @company %> Password reset confirmation
 
 [handler]

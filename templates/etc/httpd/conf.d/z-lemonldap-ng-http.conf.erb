@@ -25,6 +25,6 @@
   RewriteRule "^(?!\/\.well-known\/|\/lmerror\/).*"  "https://%{HTTP_HOST}/$1" [L,R,NE]
 
   ## Server aliases
-  ServerAlias reload.<%= @domain %> manager.<%= @domain %> auth.<%= @domain %> reset.<%= @domain %> test1.<%= @domain %>
+  ServerAlias <%= @reload_domain %>.<%= @domain %> <%= @manager_domain %>.<%= @domain %> <%= @auth_domain %>.<%= @domain %> <%= @reset_domain %>.<%= @domain %> test1.<%= @domain %>
 </VirtualHost>
 

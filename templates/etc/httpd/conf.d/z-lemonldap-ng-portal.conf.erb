@@ -8,7 +8,7 @@
 # CustomLog directive
 #LogFormat "%v:%p %h %l %{Lm-Remote-User}o %t \"%r\" %>s %O %{Lm-Remote-Custom}o" llng
 
-# Portal Virtual Host (auth.<%= @domain %>)
+# Portal Virtual Host (<%= @auth_domain %>.<%= @domain %>)
 <VirtualHost "*:443">
     ## SSL directives
     SSLEngine on
@@ -20,7 +20,7 @@
     SSLHonorCipherOrder     On
     SSLUseStapling On
 
-    ServerName auth.<%= @domain %>
+    ServerName <%= @auth_domain %>.<%= @domain %>
     DocumentRoot /usr/share/lemonldap-ng/portal/htdocs/
     <Directory /usr/share/lemonldap-ng/portal/htdocs/>
         Require all granted

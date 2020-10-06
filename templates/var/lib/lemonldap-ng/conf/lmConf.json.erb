@@ -28,7 +28,7 @@
                     "display": "auto",
                     "logo": "configure.png",
                     "name": "WebSSO Manager",
-                    "uri": "https://manager.<%= @domain %>/manager.html"
+                    "uri": "https://<%= @manager_domain %>.<%= @domain %>/manager.html"
                 },
                 "type": "application"
             },
@@ -38,7 +38,7 @@
                     "display": "auto",
                     "logo": "database.png",
                     "name": "Notifications explorer",
-                    "uri": "https://manager.<%= @domain %>/notifications.html"
+                    "uri": "https://<%= @manager_domain %>.<%= @domain %>/notifications.html"
                 },
                 "type": "application"
             },
@@ -48,7 +48,7 @@
                     "display": "auto",
                     "logo": "database.png",
                     "name": "Sessions explorer",
-                    "uri": "https://manager.<%= @domain %>/sessions.html"
+                    "uri": "https://<%= @manager_domain %>.<%= @domain %>/sessions.html"
                 },
                 "type": "application"
             },
@@ -62,7 +62,7 @@
                     "display": "off",
                     "logo": "help.png",
                     "name": "Local documentation",
-                    "uri": "https://manager.<%= @domain %>/doc/"
+                    "uri": "https://<%= @manager_domain %>.<%= @domain %>/doc/"
                 },
                 "type": "application"
             },
@@ -106,7 +106,7 @@
     "certificateResetByMailCertificateAttribute": "userCertificate;binary",
     "certificateResetByMailReplyTo": "noreply@<%= @maildomain %>",
     "certificateResetByMailSender": "noreply@<%= @maildomain %>",
-    "certificateResetByMailURL": "http://auth.<%= @domain %>/certificateReset",
+    "certificateResetByMailURL": "http://<%= @auth_domain %>.<%= @domain %>/certificateReset",
     "certificateResetByMailValidityDelay": 0,
     "cfgAuthor": "Puppet Generated",
     "cfgAuthorIP": "2001:8b0:7b17:4a17:2119:9d6f:7863:e41d",
@@ -146,9 +146,9 @@
     },
     "domain": "<%= @domain %>",
     "exportedHeaders": {
-        "auth.<%= @domain %>": {
+        "<%= @auth_domain %>.<%= @domain %>": {
         },
-        "manager.<%= @domain %>": {
+        "<%= @manager_domain %>.<%= @domain %>": {
         },
         "test1.<%= @domain %>": {
             "Auth-DisplayName": "$displayName",
@@ -227,12 +227,12 @@
         "namespace": "lemonldap-ng-sessions"
     },
     "locationRules": {
-        "auth.<%= @domain %>": {
+        "<%= @auth_domain %>.<%= @domain %>": {
           "(?#checkUser)^/checkuser": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')",
             "(?#errors)^/lmerror/": "accept",
             "default": "accept"
         },
-        "manager.<%= @domain %>": {
+        "<%= @manager_domain %>.<%= @domain %>": {
             "(?#Configuration)^/(.*?\\.(fcgi|psgi)/)?(manager\\.html|confs/|$)": "groupMatch($hGroups, 'cn', 'sysadmins')",
             "(?#Notifications)/(.*?\\.(fcgi|psgi)/)?notifications": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')",
             "(?#Sessions)/(.*?\\.(fcgi|psgi)/)?sessions": "groupMatch($hGroups, 'cn', '<%= @ldap_admin_group %>')",
@@ -261,7 +261,7 @@
     "mailLDAPFilter": "(&(mail=$mail)(objectClass=inetOrgPerson))",
     "mailSessionKey": "mail",
     "mailTimeout": 0,
-    "mailUrl": "https://auth.<%= @domain %>/resetpwd",
+    "mailUrl": "https://<%= @auth_domain %>.<%= @domain %>/resetpwd",
     "managerDn": "<%= @manager_dn %>",
     "managerPassword": "<%= @manager_password %>",
     "multiValuesSeparator": "; ",
@@ -300,7 +300,7 @@
         "LockDirectory": "/var/lib/lemonldap-ng/psessions/lock"
     },
     "port": -1,
-    "portal": "https://auth.<%= @domain %>/",
+    "portal": "https://<%= @auth_domain %>.<%= @domain %>/",
     "portalAntiFrame": 1,
     "portalCheckLogins": 1,
     "portalDisplayAppslist": 1,
@@ -323,9 +323,9 @@
     },
     "portalUserAttr": "_user",
     "post": {
-        "auth.<%= @domain %>": {
+        "<%= @auth_domain %>.<%= @domain %>": {
         },
-        "manager.<%= @domain %>": {
+        "<%= @manager_domain %>.<%= @domain %>": {
         },
         "test1.<%= @domain %>": {
         }
@@ -336,10 +336,10 @@
     "redirectFormMethod": "get",
     "registerDB": "LDAP",
     "registerTimeout": 0,
-    "registerUrl": "https://auth.<%= @domain %>/register",
+    "registerUrl": "https://<%= @auth_domain %>.<%= @domain %>/register",
     "reloadTimeout": 5,
     "reloadUrls": {
-        "localhost": "https://reload.<%= @domain %>/reload"
+        "localhost": "https://<%= @reload_domain %>.<%= @domain %>/reload"
     },
     "requireToken": 1,
     "rest2fActivation": 0,
@@ -397,9 +397,9 @@
     "userDB": "Same",
     "utotp2fActivation": 0,
     "vhostOptions": {
-        "auth.<%= @domain %>": {
+        "<%= @auth_domain %>.<%= @domain %>": {
         },
-        "manager.<%= @domain %>": {
+        "<%= @manager_domain %>.<%= @domain %>": {
             "vhostAliases": "",
             "vhostHttps": 1,
             "vhostMaintenance": 0,

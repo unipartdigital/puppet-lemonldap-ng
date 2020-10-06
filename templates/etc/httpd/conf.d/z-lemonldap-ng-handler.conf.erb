@@ -8,7 +8,7 @@
 # interface if this server doesn't host the manager itself):
 #
 #         KEY       :               VALUE
-#   host-or-IP:port :  http://reload.<%= @domain %>/reload
+#   host-or-IP:port :  http://<%= @reload_domain %>.<%= @domain %>/reload
 #
 # IMPORTANT:
 # To protect applications, see test-apache.conf template in example files
@@ -18,14 +18,14 @@ PerlOptions +GlobalRequest
 PerlModule Lemonldap::NG::Handler::ApacheMP2
 
 # Common error page and security parameters
-ErrorDocument 403 https://auth.<%= @domain %>/lmerror/403
-ErrorDocument 404 https://auth.<%= @domain %>/lmerror/404
-ErrorDocument 500 https://auth.<%= @domain %>/lmerror/500
-ErrorDocument 502 https://auth.<%= @domain %>/lmerror/502
-ErrorDocument 503 https://auth.<%= @domain %>/lmerror/503
+ErrorDocument 403 https://<%= @auth_domain %>.<%= @domain %>/lmerror/403
+ErrorDocument 404 https://<%= @auth_domain %>.<%= @domain %>/lmerror/404
+ErrorDocument 500 https://<%= @auth_domain %>.<%= @domain %>/lmerror/500
+ErrorDocument 502 https://<%= @auth_domain %>.<%= @domain %>/lmerror/502
+ErrorDocument 503 https://<%= @auth_domain %>.<%= @domain %>/lmerror/503
 
 <VirtualHost "*:443">
-    ServerName reload.<%= @domain %>
+    ServerName <%= @reload_domain %>.<%= @domain %>
     ## SSL directives
     SSLEngine on
     SSLCertificateFile      "<%= @ssl_cert_path %>"

@@ -2,13 +2,17 @@
 class lemonldap::config::augeas(
   $json       = undef, # hieradata here
   $logo_dir   = 'portal/htdocs/static',
-  $logo_url   = 'https://cdn.example.com/company_logo.png',
+  $logo_url   = 'https://${cdn._domain}example.com/company_logo.png',
   $config_dir = '/var/lib/lemonldap-ng/conf',
   $llng_dir   = '/usr/share/lemonldap-ng',
 ){
   # Pull this lot in wholesale. Remove later when this becomes
   # lemonldap::config
   $domain                 = $lemonldap::params::domain
+  $reload_domain          = $lemonldap::params::reload_domain
+  $manager_domain         = $lemonldap::params::manager_domain
+  $auth_domain            = $lemonldap::params::auth_domain
+  $reset_domain           = $lemonldap::params::reset_domain
   $maildomain             = $lemonldap::params::maildomain
   $company                = $lemonldap::config::company
   $authldapfilter         = $lemonldap::config::authldapfilter
@@ -53,14 +57,14 @@ class lemonldap::config::augeas(
 
   $flatchanges = [
     "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"1apps\"]/dict/entry[. = \"catname\"]/string \"${company}\"",
-    "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"2administration\"]/dict/entry[. = \"manager\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string \"https://manager.${domain}/manager.html\"",
-    "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"2administration\"]/dict/entry[. = \"notifications\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string \"https://manager.${domain}/notifications.html\"",
-    "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"2administration\"]/dict/entry[. = \"sessions\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string \"https://manager.${domain}/sessions.html\"",
-    "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"3documentation\"]/dict/entry[. = \"localdoc\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string \"https://manager.${domain}/doc/\"",
+    "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"2administration\"]/dict/entry[. = \"manager\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string \"https://${${ma_domain}nager_domain}.${domain}/manager.html\"",
+    "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"2administration\"]/dict/entry[. = \"notifications\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string \"https://${${ma_domain}nager_domain}.${domain}/notifications.html\"",
+    "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"2administration\"]/dict/entry[. = \"sessions\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string \"https://${${ma_domain}nager_domain}.${domain}/sessions.html\"",
+    "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"3documentation\"]/dict/entry[. = \"localdoc\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string \"https://${${ma_domain}nager_domain}.${domain}/doc/\"",
     "set dict/entry[. = \"AuthLDAPFilter\"]/string \"${authldapfilter}\"",
     "set dict/entry[. = \"certificateResetByMailReplyTo\"]/string \"noreply@${maildomain}\"",
     "set dict/entry[. = \"certificateResetByMailSender\"]/string \"noreply@${maildomain}\"",
-    "set dict/entry[. = \"certificateResetByMailURL\"]/string \"http://auth.${domain}/certificateReset\"",
+    "set dict/entry[. = \"certificateResetByMailURL\"]/string \"http://${auth_domain}.${domain}/certificateReset\"",
     "set dict/entry[. = \"cfgDate\"]/number ${timestamp}",
     "set dict/entry[. = \"cfgNum\"]/number ${config_num}",
     "set dict/entry[. = \"domain\"]/string \"${domain}\"",
@@ -72,22 +76,22 @@ class lemonldap::config::augeas(
     "set dict/entry[. = \"ldapPort\"]/number ${ldap_port}",
     "set dict/entry[. = \"ldapServer\"]/string \"${ldap_server}\"",
     "set dict/entry[. = \"mailFrom\"]/string \"noreply@${maildomain}\"",
-    "set dict/entry[. = \"mailUrl\"]/string \"https://auth.${domain}/resetpwd\"",
+    "set dict/entry[. = \"mailUrl\"]/string \"https://${auth_domain}.${domain}/resetpwd\"",
     "set dict/entry[. = \"managerDn\"]/string \"${manager_dn}\"",
     "set dict/entry[. = \"managerPassword\"]/string \"${manager_password}\"",
-    "set dict/entry[. = \"portal\"]/string \"https://auth.${domain}/\"",
+    "set dict/entry[. = \"portal\"]/string \"https://${auth_domain}.${domain}/\"",
     "set dict/entry[. = \"portalMainLogo\"]/string \"${logo}\"",
-    "set dict/entry[. = \"post\"]/dict/entry[1] \"auth.${domain}\"",
-    "set dict/entry[. = \"post\"]/dict/entry[2] \"manager.${domain}\"",
-    "set dict/entry[. = \"registerUrl\"]/string \"https://auth.${domain}/register\"",
+    "set dict/entry[. = \"post\"]/dict/entry[1] \"${auth_domain}.${domain}\"",
+    "set dict/entry[. = \"post\"]/dict/entry[2] \"${manager_domain}.${domain}\"",
+    "set dict/entry[. = \"registerUrl\"]/string \"https://${auth_domain}.${domain}/register\"",
     "set dict/entry[. = \"reloadUrls\"]/dict/entry[. = \"localhost\"] \"localhost\"",
-    "set dict/entry[. = \"reloadUrls\"]/dict/entry[. = \"localhost\"]/string \"https://reload.${domain}/reload\"",
+    "set dict/entry[. = \"reloadUrls\"]/dict/entry[. = \"localhost\"]/string \"https://${${re_domain}load_domain}.${domain}/reload\"",
     "set dict/entry[. = \"samlServicePrivateKeyEnc\"]/string \"${saml_enc_key}\"",
     "set dict/entry[. = \"samlServicePrivateKeySig\"]/string \"${saml_sig_key}\"",
     "set dict/entry[. = \"samlServicePublicKeyEnc\"]/string \"${saml_enc_key_pub}\"",
     "set dict/entry[. = \"samlServicePublicKeySig\"]/string \"${saml_sig_key_pub}\"",
-    "set dict/entry[. = \"vhostOptions\"]/dict/entry[1] \"auth.${domain}\"",
-    "set dict/entry[. = \"vhostOptions\"]/dict/entry[2] \"manager.${domain}\"",
+    "set dict/entry[. = \"vhostOptions\"]/dict/entry[1] \"${auth_domain}.${domain}\"",
+    "set dict/entry[. = \"vhostOptions\"]/dict/entry[2] \"${manager_domain}.${domain}\"",
   ]
 
   $locationchanges = $location_rules.map |$k, $v| {

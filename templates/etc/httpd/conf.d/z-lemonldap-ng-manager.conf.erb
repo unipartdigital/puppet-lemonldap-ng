@@ -8,9 +8,9 @@
 # CustomLog directive
 #LogFormat "%v:%p %h %l %{Lm-Remote-User}o %t \"%r\" %>s %O %{Lm-Remote-Custom}o" llng
 
-# Manager virtual host (manager.<%= @domain %>)
+# Manager virtual host (<%= @manager_domain %>.<%= @domain %>)
 <VirtualHost "*:443">
-    ServerName manager.<%= @domain %>
+    ServerName <%= @manager_domain %>.<%= @domain %>
 
   ## SSL directives
     SSLEngine on

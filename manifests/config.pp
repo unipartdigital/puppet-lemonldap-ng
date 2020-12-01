@@ -30,6 +30,7 @@ class lemonldap::config (
   $saml_sig_key     = undef,
   $saml_enc_key_pub = undef,
   $saml_sig_key_pub = undef,
+  $user_control     = '^[\\\\w\\\\.\\\\-@\\\\+]+$',
   $location_rules   = {}
 ){
 
@@ -112,6 +113,7 @@ class lemonldap::config (
     "set dict/entry[. = \"samlServicePrivateKeySig\"]/string \"${saml_sig_key}\"",
     "set dict/entry[. = \"samlServicePublicKeyEnc\"]/string \"${saml_enc_key_pub}\"",
     "set dict/entry[. = \"samlServicePublicKeySig\"]/string \"${saml_sig_key_pub}\"",
+    "set dict/entry[. = \"userControl\"]/string \"${user_control}\"",
     "set dict/entry[. = \"vhostOptions\"]/dict/entry[1] \"${auth_domain}.${domain}\"",
     "set dict/entry[. = \"vhostOptions\"]/dict/entry[2] \"${manager_domain}.${domain}\"",
   ]

@@ -42,9 +42,7 @@ class lemonldap::config (
   $maildomain     = $lemonldap::params::maildomain
   $timestamp      = Timestamp().strftime('%s')
 
-#  $config_num = $facts['lemonldap_current_config'] + 1
-  $config_num = 1
-  $llng_config = "lmConf-${config_num}.json"
+  $llng_config = 'lmConf-1.json'
   $company_logo =  "${llng_dir}/${logo_dir}/${logo}"
 
 
@@ -89,7 +87,6 @@ class lemonldap::config (
     "set dict/entry[. = \"certificateResetByMailSender\"]/string \"noreply@${maildomain}\"",
     "set dict/entry[. = \"certificateResetByMailURL\"]/string \"http://${auth_domain}.${domain}/certificateReset\"",
     "set dict/entry[. = \"cfgDate\"]/number ${timestamp}",
-    "set dict/entry[. = \"cfgNum\"]/number ${config_num}",
     "set dict/entry[. = \"domain\"]/string \"${domain}\"",
     "set dict/entry[. = \"key\"]/string \"${lemon_ldap_key}\"",
     "set dict/entry[. = \"ldapBase\"]/string \"${ldap_base_dn}\"",

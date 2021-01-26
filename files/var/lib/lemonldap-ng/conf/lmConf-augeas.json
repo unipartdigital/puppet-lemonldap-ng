@@ -102,7 +102,7 @@
     "cfgAuthorIP": "2001:8b0:7b17:4a17:2119:9d6f:7863:e41d",
     "cfgDate": 0,
     "cfgLog": "",
-    "cfgNum": 0,
+    "cfgNum": 1,
     "cfgVersion": "2.0.7",
     "checkUserHiddenAttributes": "_loginHistory _session_id hGroups",
     "checkUserIdRule": 1,

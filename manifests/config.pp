@@ -83,7 +83,7 @@ class lemonldap::config (
     "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"2administration\"]/dict/entry[. = \"notifications\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string \"https://${manager_domain}.${domain}/notifications.html\"",
     "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"2administration\"]/dict/entry[. = \"sessions\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string \"https://${manager_domain}.${domain}/sessions.html\"",
     "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"3documentation\"]/dict/entry[. = \"localdoc\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string \"https://${manager_domain}.${domain}/doc/\"",
-    "set dict/entry[. = \"authChoiceModules\"]/dict/entry[1] \"${auth_choice}\""
+    "set dict/entry[. = \"authChoiceModules\"]/dict/entry[1] \"${auth_choice}\"",
     "set dict/entry[. = \"AuthLDAPFilter\"]/string \"${authldapfilter}\"",
     "set dict/entry[. = \"certificateResetByMailReplyTo\"]/string \"noreply@${maildomain}\"",
     "set dict/entry[. = \"certificateResetByMailSender\"]/string \"noreply@${maildomain}\"",

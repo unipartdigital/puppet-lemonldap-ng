@@ -12,6 +12,7 @@ class lemonldap::config (
   $logo_url         = 'https://cdn.example.com/company_logo.png',
   $config_dir       = '/var/lib/lemonldap-ng/conf',
   $authldapfilter   = '(&(uid=$user)(objectClass=inetOrgPerson))',
+  $auth_choice      = 'LDAP',
   $manager_dn       = 'uid=manager,cn=users,cn=accounts,dc=example,dc=com',
   $manager_password = undef,
   $ldap_server      = 'ldaps://ldap.example.com',
@@ -82,6 +83,7 @@ class lemonldap::config (
     "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"2administration\"]/dict/entry[. = \"notifications\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string \"https://${manager_domain}.${domain}/notifications.html\"",
     "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"2administration\"]/dict/entry[. = \"sessions\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string \"https://${manager_domain}.${domain}/sessions.html\"",
     "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"3documentation\"]/dict/entry[. = \"localdoc\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string \"https://${manager_domain}.${domain}/doc/\"",
+    "set dict/entry[. = \"authChoiceModules\"]/dict/entry[1] \"${auth_choice}\""
     "set dict/entry[. = \"AuthLDAPFilter\"]/string \"${authldapfilter}\"",
     "set dict/entry[. = \"certificateResetByMailReplyTo\"]/string \"noreply@${maildomain}\"",
     "set dict/entry[. = \"certificateResetByMailSender\"]/string \"noreply@${maildomain}\"",

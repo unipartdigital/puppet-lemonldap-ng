@@ -7,32 +7,35 @@
 
 # Set these in Hiera, don't change them here
 class lemonldap::config (
-  $logo_dir         = 'portal/htdocs/static',
-  $logo             = 'common/logos/company_logo.png',
-  $logo_url         = 'https://cdn.example.com/company_logo.png',
-  $config_dir       = '/var/lib/lemonldap-ng/conf',
-  $authldapfilter   = '(&(uid=$user)(objectClass=inetOrgPerson))',
-  $auth_choice      = 'LDAP',
-  $manager_dn       = 'uid=manager,cn=users,cn=accounts,dc=example,dc=com',
-  $manager_password = undef,
-  $ldap_server      = 'ldaps://ldap.example.com',
-  $ldap_base_dn     = 'cn=users,cn=accounts,dc=example,dc=com',
-  $ldap_group_base  = 'cn=groups,cn=accounts,dc=example,dc=com',
+  $logo_dir               = 'portal/htdocs/static',
+  $logo                   = 'common/logos/company_logo.png',
+  $logo_url               = 'https://cdn.example.com/company_logo.png',
+  $config_dir             = '/var/lib/lemonldap-ng/conf',
+  $authldapfilter         = '(&(uid=$user)(objectClass=inetOrgPerson))',
+  $auth_choice            = 'LDAP',
+  $manager_dn             = 'uid=manager,cn=users,cn=accounts,dc=example,dc=com',
+  $manager_password       = undef,
+  $ldap_server            = 'ldaps://ldap.example.com',
+  $ldap_base_dn           = 'cn=users,cn=accounts,dc=example,dc=com',
+  $ldap_group_base        = 'cn=groups,cn=accounts,dc=example,dc=com',
   $ldap_group_objectclass = 'groupOfNames',
   $ldap_group_attribute   = 'member',
-  $ldap_port        = '636',
-  $ldap_user        = 'uid=admin,cn=users,cn=accounts,dc=example,dc=com',
-  $ldap_admin_group = 'ldapadmins',
-  $ldap_password    = undef,
-  $company          = 'LemonLDAP::NG',
-  $llng_dir         = '/usr/share/lemonldap-ng',
-  $lemon_ldap_key   = undef,
-  $saml_enc_key     = undef,
-  $saml_sig_key     = undef,
-  $saml_enc_key_pub = undef,
-  $saml_sig_key_pub = undef,
-  $user_control     = '^[\\\\w\\\\.\\\\-@\\\\+]+$',
-  $location_rules   = {}
+  $ldap_port              = '636',
+  $ldap_user              = 'uid=admin,cn=users,cn=accounts,dc=example,dc=com',
+  $ldap_admin_group       = 'ldapadmins',
+  $ldap_password          = undef,
+  $company                = 'LemonLDAP::NG',
+  $llng_dir               = '/usr/share/lemonldap-ng',
+  $lemon_ldap_key         = undef,
+  $saml_enc_key           = undef,
+  $saml_sig_key           = undef,
+  $saml_enc_key_pub       = undef,
+  $saml_sig_key_pub       = undef,
+  $user_control           = '^[\\\\w\\\\.\\\\-@\\\\+]+$',
+  $location_rules         = {},
+  $allow_register         = true,
+  $allow_change_password  = '"$_auth =~ /^(LDAP|DBI)$/"',
+  $allow_reset_password   = true,
 ){
 
   $domain         = $lemonldap::params::domain
@@ -77,6 +80,16 @@ class lemonldap::config (
     require => [Package['lemonldap-ng'], File[$config_dir]]
   }
 
+  $allow_register_num = $allow_register? {
+    true => 1,
+    default => 0
+  }
+
+  $allow_reset_password_num = $allow_reset_password? {
+    true => 1,
+    default => 0
+  }
+
   $flatchanges = [
     "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"1apps\"]/dict/entry[. = \"catname\"]/string \"${company}\"",
     "set dict/entry[. = \"applicationList\"]/dict/entry[. = \"2administration\"]/dict/entry[. = \"manager\"]/dict/entry[. = \"options\"]/dict/entry[. = \"uri\"]/string \"https://${manager_domain}.${domain}/manager.html\"",
@@ -102,6 +115,9 @@ class lemonldap::config (
     "set dict/entry[. = \"managerDn\"]/string \"${manager_dn}\"",
     "set dict/entry[. = \"managerPassword\"]/string \"${manager_password}\"",
     "set dict/entry[. = \"portal\"]/string \"https://${auth_domain}.${domain}/\"",
+    "set dict/entry[. = \"portalDisplayChangePassword\"]/string \"${allow_change_password}\"",
+    "set dict/entry[. = \"portalDisplayRegister\"]/number ${allow_register_num}",
+    "set dict/entry[. = \"portalDisplayResetPassword\"]/number ${allow_reset_password_num}",
     "set dict/entry[. = \"portalMainLogo\"]/string \"${logo}\"",
     "set dict/entry[. = \"post\"]/dict/entry[1] \"${auth_domain}.${domain}\"",
     "set dict/entry[. = \"post\"]/dict/entry[2] \"${manager_domain}.${domain}\"",
